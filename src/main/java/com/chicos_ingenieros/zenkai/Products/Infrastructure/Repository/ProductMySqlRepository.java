@@ -1,5 +1,6 @@
 package com.chicos_ingenieros.zenkai.Products.Infrastructure.Repository;
 
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Entity.ProductEntity;
@@ -24,7 +25,9 @@ public class ProductMySqlRepository implements ProductRepository {
 
     @Override
     public Product findById(Long id) {
-        return repository.findById(id).map(mapper::toDomain).orElse(null);
+
+        return repository.findById(id).map(mapper::toDomain).orElseThrow(() ->
+                new ResourceNotFoundException("Product wit id "+id+" not found"));
     }
 
     @Override
