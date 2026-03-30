@@ -1,4 +1,4 @@
-package com.chicos_ingenieros.zenkai.Exceptions;
+package com.chicos_ingenieros.zenkai.Exceptions.Domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,8 @@
-package com.chicos_ingenieros.zenkai.Exceptions;
+package com.chicos_ingenieros.zenkai.Exceptions.Infrastructure;
 
-import com.chicos_ingenieros.zenkai.Exceptions.Class.ResourceDuplicateException;
-import com.chicos_ingenieros.zenkai.Exceptions.Class.ResourceNotFoundException;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.ErrorDetails;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
