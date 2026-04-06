@@ -1,4 +1,6 @@
 package com.chicos_ingenieros.zenkai.Users.Domain;
 
-public interface UserService {
+public enum UserStatus {
+    ACTIVE,
+    INACTIVE
 }

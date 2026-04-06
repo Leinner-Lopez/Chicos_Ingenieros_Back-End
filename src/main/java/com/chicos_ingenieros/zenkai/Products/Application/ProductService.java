@@ -15,7 +15,6 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository repository;
-    private final CategoryService categoryService;
 
     public Product saveProduct(Product product) {
         return repository.save(product);
