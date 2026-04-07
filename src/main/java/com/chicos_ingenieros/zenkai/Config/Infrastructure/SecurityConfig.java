@@ -1,4 +1,4 @@
-package com.chicos_ingenieros.zenkai.Config;
+package com.chicos_ingenieros.zenkai.Config.Application;
 
 
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-
 public class SecurityConfig {
 
     @Bean
@@ -22,6 +21,6 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-                        authRequest -> authRequest.requestMatchers("/api/**").permitAll().anyRequest().authenticated()).formLogin(withDefaults()).build();
+                        authRequest -> authRequest.requestMatchers("/auth/**").permitAll().anyRequest().authenticated()).formLogin(withDefaults()).build();
     }
 }

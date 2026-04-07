@@ -1,4 +1,4 @@
-package com.chicos_ingenieros.zenkai.Config;
+package com.chicos_ingenieros.zenkai.Config.Application;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
