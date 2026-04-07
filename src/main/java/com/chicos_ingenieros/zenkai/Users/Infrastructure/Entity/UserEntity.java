@@ -34,6 +34,7 @@ public class UserEntity implements UserDetails {
 
     @Column(unique = true, nullable = false)
     private String email;
+    private String phone_number;
     private String password;
 
     @Enumerated(EnumType.STRING)

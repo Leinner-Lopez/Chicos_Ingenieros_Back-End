@@ -40,8 +40,11 @@ public class UserService {
         UserDB.setFirst_name(user.getFirst_name());
         UserDB.setLast_name(user.getLast_name());
         UserDB.setEmail(user.getEmail());
-        UserDB.setPassword(user.getPassword());
+        UserDB.setPhone_number(user.getPhone_number());
         UserDB.setStatus(user.getStatus());
+        if(user.getPassword() != null && !user.getPassword().isEmpty()){
+            UserDB.setPassword(encoder.encode(user.getPassword()));
+        }
         return repository.save(UserDB);
     }
 

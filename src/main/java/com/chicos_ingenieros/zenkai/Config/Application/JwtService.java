@@ -27,6 +27,7 @@ public class JwtService {
         return Jwts
                 .builder()
                 .claims(claims)
+                .claim("role",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).findFirst().get())
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
