@@ -28,10 +28,8 @@ public class SecurityConfig {
     public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
         http.cors(Customizer.withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
-        http.authorizeHttpRequests(
-                authRequest -> authRequest.requestMatchers("/api/auth/**").permitAll().anyRequest().authenticated());
-        http.sessionManagement(sessionManager ->
-                sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.authorizeHttpRequests(authRequest -> authRequest.requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll().anyRequest().authenticated());
+        http.sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.authenticationProvider(authenticationProvider);
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
