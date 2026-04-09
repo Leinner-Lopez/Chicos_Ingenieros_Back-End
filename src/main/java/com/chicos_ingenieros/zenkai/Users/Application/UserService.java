@@ -1,6 +1,7 @@
 package com.chicos_ingenieros.zenkai.Users.Application;
 
-import com.chicos_ingenieros.zenkai.Products.Domain.Product;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,20 @@ public class UserService {
     private final PasswordEncoder encoder;
 
     public User saveUser(User user) {
+        User userDB = repository.findByEmail(user.getEmail());
+        if(userDB != null) {
+            throw new ResourceDuplicateException("User already exists in the system");
+        }
         user.setPassword(encoder.encode(user.getPassword()));
         return repository.save(user);
     }
 
     public User findUserById(Long id) {
-        return repository.findById(id);
+        User user = repository.findById(id);
+        if(user == null){
+            throw new ResourceNotFoundException("User with id " + id + " not found");
+        }
+        return user;
     }
 
     public User findUserByEmail(String email) {
@@ -49,6 +58,10 @@ public class UserService {
     }
 
     public void deleteUserById(Long id) {
+        User UserDB = repository.findById(id);
+        if(UserDB == null){
+            throw new ResourceNotFoundException("User with id " + id + " not found");
+        }
         repository.deleteById(id);
     }
 }

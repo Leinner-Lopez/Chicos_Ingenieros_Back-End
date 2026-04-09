@@ -30,8 +30,7 @@ public class UserMySqlRepository implements UserRepository {
 
     @Override
     public User findById(Long id) {
-        return repository.findById(id).map(mapper::userEntityToUser).orElseThrow(() ->
-                new ResourceNotFoundException("User with id "+ id +" not found"));
+        return repository.findById(id).map(mapper::userEntityToUser).orElse(null);
     }
 
     @Override
