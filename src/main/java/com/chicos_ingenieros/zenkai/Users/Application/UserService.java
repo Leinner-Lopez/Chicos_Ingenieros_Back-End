@@ -20,7 +20,8 @@ public class UserService {
 
     public User saveUser(User user) {
         User userDB = repository.findByEmail(user.getEmail());
-        if(userDB != null) {
+        User userDB2 = repository.findByDocumentNumber(user.getDocumentNumber());
+        if(userDB != null || userDB2 != null) {
             throw new ResourceDuplicateException("User already exists in the system");
         }
         user.setPassword(encoder.encode(user.getPassword()));

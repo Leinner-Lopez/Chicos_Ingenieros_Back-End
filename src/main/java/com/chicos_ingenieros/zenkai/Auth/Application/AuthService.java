@@ -35,7 +35,7 @@ public class AuthService {
     public AuthResponse register(RegisterRequest request){
         User user = User.builder()
                 .email(request.getEmail())
-                .document_number(request.getDocument_number())
+                .documentNumber(request.getDocument_number())
                 .phone_number(request.getPhone_number())
                 .first_name(request.getFirst_name())
                 .last_name(request.getLast_name())

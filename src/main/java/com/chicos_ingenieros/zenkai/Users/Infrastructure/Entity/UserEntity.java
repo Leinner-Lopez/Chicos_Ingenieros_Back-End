@@ -27,7 +27,7 @@ public class UserEntity implements UserDetails {
     private Long user_id;
 
     @Column(unique = true)
-    private String document_number;
+    private String documentNumber;
 
     private String first_name;
     private String last_name;

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
     private Long user_id;
-    private String document_number;
+    private String documentNumber;
     private String first_name;
     private String last_name;
     private String email;

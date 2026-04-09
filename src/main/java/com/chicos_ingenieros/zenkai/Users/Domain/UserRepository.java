@@ -9,6 +9,8 @@ public interface UserRepository {
 
     User findByEmail(String email);
 
+    User findByDocumentNumber(String documento);
+
     User findById(Long id);
 
     List<User> findAll();

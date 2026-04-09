@@ -29,6 +29,11 @@ public class UserMySqlRepository implements UserRepository {
     }
 
     @Override
+    public User findByDocumentNumber(String documento) {
+        return mapper.userEntityToUser(repository.findByDocumentNumber(documento));
+    }
+
+    @Override
     public User findById(Long id) {
         return repository.findById(id).map(mapper::userEntityToUser).orElse(null);
     }
