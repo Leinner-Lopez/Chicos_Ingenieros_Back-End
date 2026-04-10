@@ -37,7 +37,11 @@ public class UserService {
     }
 
     public User findUserByEmail(String email) {
-        return repository.findByEmail(email);
+        User userDB = repository.findByEmail(email);
+        if(userDB == null) {
+            throw new ResourceNotFoundException("User with email " + email + " not found");
+        }
+        return userDB;
     }
 
     @Transactional(readOnly = true)
