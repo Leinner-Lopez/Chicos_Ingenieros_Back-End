@@ -29,7 +29,10 @@ public class AuthService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user = userMapper.userToUserEntity(userService.findUserByEmail(request.getUsername()));
         String token = jwtService.getToken(user);
-        return AuthResponse.builder().token(token).build();
+        return AuthResponse.builder().token(token)
+                .email(user.getUsername())
+                .userId(userService.findUserByEmail(user.getUsername()).getUser_id())
+                .build();
     }
 
     public AuthResponse register(RegisterRequest request){
@@ -44,9 +47,11 @@ public class AuthService {
                 .status(UserStatus.ACTIVE)
                 .build();
 
-        userService.saveUser(user);
+        User userDB = userService.saveUser(user);
         return AuthResponse.builder()
                 .token(jwtService.getToken(userMapper.userToUserEntity(user)))
+                .email(userDB.getEmail())
+                .userId(userDB.getUser_id())
                 .build();
     }
 }
