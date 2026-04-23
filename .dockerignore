@@ -1,0 +1,9 @@
+target/
+build/
+.git/
+.mvn/
+*.iml
+.idea/
+.vscode/
+Dockerfile
+docker-compose.yml
