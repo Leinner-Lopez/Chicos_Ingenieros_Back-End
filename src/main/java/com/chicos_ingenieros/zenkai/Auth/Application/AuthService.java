@@ -8,7 +8,6 @@ import com.chicos_ingenieros.zenkai.Users.Application.UserService;
 import com.chicos_ingenieros.zenkai.Users.Domain.Role;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserStatus;
-import com.chicos_ingenieros.zenkai.Users.Infrastructure.Entity.UserEntity;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,13 +17,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService {
+public class AuthService implements LoginUserCase {
 
     private final UserService userService;
     private final JwtService jwtService;
     private final UserMapper userMapper;
     private final AuthenticationManager authenticationManager;
 
+    @Override
     public AuthResponse login(LoginRequest request){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user = userMapper.userToUserEntity(userService.findUserByEmail(request.getUsername()));
@@ -35,6 +35,7 @@ public class AuthService {
                 .build();
     }
 
+    @Override
     public AuthResponse register(RegisterRequest request){
         User user = User.builder()
                 .email(request.getEmail())

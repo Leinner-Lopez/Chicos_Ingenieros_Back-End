@@ -3,6 +3,7 @@ package com.chicos_ingenieros.zenkai.Users.Infrastructure;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Users.Application.UserService;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
+import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll() {
-        List<User> userList = service.findAllUsers();
+    public ResponseEntity<List<UserDTO>> getAll() {
+        List<UserDTO> userList = service.findAllUsers();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 

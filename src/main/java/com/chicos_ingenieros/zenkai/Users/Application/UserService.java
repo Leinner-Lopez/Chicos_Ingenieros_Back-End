@@ -4,6 +4,8 @@ import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
+import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;
+import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserDTOMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,13 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class UserService implements  UserCrudUseCase {
 
     private final UserRepository repository;
     private final PasswordEncoder encoder;
+    private final UserDTOMapper mapper;
 
+    @Override
     public User saveUser(User user) {
         User userDB = repository.findByEmail(user.getEmail());
         User userDB2 = repository.findByDocumentNumber(user.getDocumentNumber());
@@ -28,6 +32,7 @@ public class UserService {
         return repository.save(user);
     }
 
+    @Override
     public User findUserById(Long id) {
         User user = repository.findById(id);
         if(user == null){
@@ -36,6 +41,7 @@ public class UserService {
         return user;
     }
 
+    @Override
     public User findUserByEmail(String email) {
         User userDB = repository.findByEmail(email);
         if(userDB == null) {
@@ -45,10 +51,15 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<User> findAllUsers() {
-        return repository.findAll();
+    @Override
+    public List<UserDTO> findAllUsers() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::userToUserDTO)
+                .toList();
     }
 
+    @Override
     public User updateUser(Long id, User user) {
         User UserDB = repository.findById(id);
         UserDB.setFirst_name(user.getFirst_name());
@@ -62,6 +73,7 @@ public class UserService {
         return repository.save(UserDB);
     }
 
+    @Override
     public void deleteUserById(Long id) {
         User UserDB = repository.findById(id);
         if(UserDB == null){

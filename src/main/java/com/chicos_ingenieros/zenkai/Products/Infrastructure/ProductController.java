@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Products.Infrastructure;
 
 import com.chicos_ingenieros.zenkai.Products.Application.ProductService;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAll() {
-        List<Product> productList = service.findAllProducts();
+    public ResponseEntity<List<ProductDTO>> getAll() {
+        List<ProductDTO> productList = service.findAllProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 

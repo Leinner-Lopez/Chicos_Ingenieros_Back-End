@@ -10,23 +10,27 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class CategoryService {
+public class CategoryService implements CategoryCrudUseCase{
 
     private final CategoryRepository repository;
 
+    @Override
     public Category saveCategory(Category category) {
         return repository.save(category);
     }
 
+    @Override
     public Category findCategoryById(Long id) {
         return repository.findById(id);
     }
 
     @Transactional(readOnly = true)
+    @Override
     public List<Category> findAllCategories() {
         return repository.findAll();
     }
 
+    @Override
     public Category updateCategory(Long id, Category category) {
         Category categoryDB = repository.findById(id);
         categoryDB.setName(category.getName());
@@ -34,6 +38,7 @@ public class CategoryService {
         return repository.save(categoryDB);
     }
 
+    @Override
     public void deleteCategoryById(Long id) {
         repository.deleteById(id);
     }
