@@ -39,4 +39,9 @@ public class ProductMySqlRepository implements ProductRepository {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public Long countProducts() {
+        return repository.count();
+    }
 }

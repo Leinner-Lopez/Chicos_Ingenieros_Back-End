@@ -2,6 +2,8 @@ package com.chicos_ingenieros.zenkai.Users.Application;
 
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
+import com.chicos_ingenieros.zenkai.Users.Application.UseCases.UserCountUseCase;
+import com.chicos_ingenieros.zenkai.Users.Application.UseCases.UserCrudUseCase;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;
@@ -15,7 +17,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class UserService implements  UserCrudUseCase {
+public class UserService implements UserCrudUseCase, UserCountUseCase {
 
     private final UserRepository repository;
     private final PasswordEncoder encoder;
@@ -80,5 +82,10 @@ public class UserService implements  UserCrudUseCase {
             throw new ResourceNotFoundException("User with id " + id + " not found");
         }
         repository.deleteById(id);
+    }
+
+    @Override
+    public Long countUsers() {
+        return repository.countUsers();
     }
 }

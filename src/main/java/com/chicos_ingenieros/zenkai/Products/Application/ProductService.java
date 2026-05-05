@@ -1,5 +1,7 @@
 package com.chicos_ingenieros.zenkai.Products.Application;
 
+import com.chicos_ingenieros.zenkai.Products.Application.UseCases.ProductCountUseCase;
+import com.chicos_ingenieros.zenkai.Products.Application.UseCases.ProductCrudUseCase;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService implements ProductCrudUseCase {
+public class ProductService implements ProductCrudUseCase, ProductCountUseCase {
 
     private final ProductRepository repository;
     private final ProductDTOMapper mapper;
@@ -48,5 +50,10 @@ public class ProductService implements ProductCrudUseCase {
     @Override
     public void deleteProductById(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Long countProducts() {
+        return repository.countProducts();
     }
 }

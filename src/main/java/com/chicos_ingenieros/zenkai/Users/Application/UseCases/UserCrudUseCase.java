@@ -1,4 +1,4 @@
-package com.chicos_ingenieros.zenkai.Users.Application;
+package com.chicos_ingenieros.zenkai.Users.Application.UseCases;
 
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;

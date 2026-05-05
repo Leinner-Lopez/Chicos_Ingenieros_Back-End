@@ -1,4 +1,4 @@
-package com.chicos_ingenieros.zenkai.Categories.Application;
+package com.chicos_ingenieros.zenkai.Categories.Application.UseCases;
 
 import com.chicos_ingenieros.zenkai.Categories.Domain.Category;
 

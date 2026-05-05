@@ -47,4 +47,9 @@ public class UserMySqlRepository implements UserRepository {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public Long countUsers() {
+        return repository.count();
+    }
 }

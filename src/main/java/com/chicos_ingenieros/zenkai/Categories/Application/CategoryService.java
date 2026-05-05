@@ -1,5 +1,7 @@
 package com.chicos_ingenieros.zenkai.Categories.Application;
 
+import com.chicos_ingenieros.zenkai.Categories.Application.UseCases.CategoryCountUseCase;
+import com.chicos_ingenieros.zenkai.Categories.Application.UseCases.CategoryCrudUseCase;
 import com.chicos_ingenieros.zenkai.Categories.Domain.Category;
 import com.chicos_ingenieros.zenkai.Categories.Domain.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class CategoryService implements CategoryCrudUseCase{
+public class CategoryService implements CategoryCrudUseCase, CategoryCountUseCase {
 
     private final CategoryRepository repository;
 
@@ -41,5 +43,10 @@ public class CategoryService implements CategoryCrudUseCase{
     @Override
     public void deleteCategoryById(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public Long countCategories() {
+        return repository.countCategories();
     }
 }
