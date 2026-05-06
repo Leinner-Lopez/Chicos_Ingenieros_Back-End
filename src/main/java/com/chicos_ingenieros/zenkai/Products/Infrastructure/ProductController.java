@@ -35,6 +35,13 @@ public class ProductController {
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> countProducts()
+    {
+        Long count = service.countProducts();
+        return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
     @PutMapping
     public ResponseEntity<Product> update(@RequestBody Product product) {
         Product productDB = service.updateProduct(product.getProduct_id(), product);
