@@ -68,6 +68,7 @@ public class UserService implements UserCrudUseCase, UserCountUseCase {
         UserDB.setLast_name(user.getLast_name());
         UserDB.setEmail(user.getEmail());
         UserDB.setPhone_number(user.getPhone_number());
+        UserDB.setRole(user.getRole());
         UserDB.setStatus(user.getStatus());
         if(user.getPassword() != null && !user.getPassword().isEmpty()){
             UserDB.setPassword(encoder.encode(user.getPassword()));
