@@ -1,6 +1,5 @@
 package com.chicos_ingenieros.zenkai.Config.Infrastructure;
 
-import com.chicos_ingenieros.zenkai.Users.Application.UserService;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
