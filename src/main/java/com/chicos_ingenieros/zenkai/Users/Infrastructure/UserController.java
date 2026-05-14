@@ -3,6 +3,7 @@ package com.chicos_ingenieros.zenkai.Users.Infrastructure;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Users.Application.UserService;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
+import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll() {
-        List<User> userList = service.findAllUsers();
+    public ResponseEntity<List<UserDTO>> getAll() {
+        List<UserDTO> userList = service.findAllUsers();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
@@ -41,9 +42,15 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> countUsers() {
+        Long count = service.countUsers();
+        return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
     @PutMapping
     public ResponseEntity<User> update(@RequestBody User user) {
-        User userDB = service.updateUser(user.getUser_id(), user);
+        User userDB = service.updateUser(user.getUserId(), user);
         return new ResponseEntity<>(userDB, HttpStatus.OK);
     }
 

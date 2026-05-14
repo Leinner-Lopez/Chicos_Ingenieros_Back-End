@@ -1,6 +1,7 @@
 package com.chicos_ingenieros.zenkai.Exceptions.Infrastructure;
 
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ErrorDetails;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.IlegalActionException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -33,5 +34,16 @@ public class GlobalExceptionHandler {
                 "DUPLICATE"
         );
         return new ResponseEntity<>(error,HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(IlegalActionException.class)
+    public ResponseEntity<ErrorDetails> handleIllegalActionException(IlegalActionException ex, WebRequest request) {
+        ErrorDetails error = new ErrorDetails(
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false),
+                "ILLEGAL"
+        );
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

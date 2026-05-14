@@ -39,4 +39,9 @@ public class CategoryMySqlRepository implements CategoryRepository {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public Long countCategories() {
+        return repository.count();
+    }
 }

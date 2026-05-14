@@ -1,6 +1,5 @@
 package com.chicos_ingenieros.zenkai.Products.Domain;
 
-import com.chicos_ingenieros.zenkai.Categories.Domain.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +12,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-    private Long product_id;
+    private Long productId;
     private String name;
     private BigDecimal price;
     private String description;
-    private int min_stock;
-    private Category category;
+    private Integer minStock;
+    private Long categoryId;
+    private String categoryName;
 }

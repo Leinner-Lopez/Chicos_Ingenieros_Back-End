@@ -34,9 +34,14 @@ public class CategoryController {
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
+    @GetMapping("/count")
+    public Long getCountCategories() {
+        return service.countCategories();
+    }
+
     @PutMapping
     public ResponseEntity<Category> update(@RequestBody Category category) {
-        Category categoryDB = service.updateCategory(category.getCategory_id(),category);
+        Category categoryDB = service.updateCategory(category.getCategoryId(),category);
         return new ResponseEntity<>(categoryDB, HttpStatus.OK);
     }
 
