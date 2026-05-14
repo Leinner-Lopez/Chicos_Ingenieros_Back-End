@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Lots.Application;
 
 import com.chicos_ingenieros.zenkai.Lots.Application.UseCases.LotCountUseCase;
 import com.chicos_ingenieros.zenkai.Lots.Application.UseCases.LotCrudUseCase;
+import com.chicos_ingenieros.zenkai.Lots.Application.UseCases.LotFeFoUseCase;
 import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class LotService implements LotCrudUseCase, LotCountUseCase {
+public class LotService implements LotCrudUseCase, LotCountUseCase, LotFeFoUseCase {
 
     private final LotRepository repository;
 
@@ -51,6 +52,11 @@ public class LotService implements LotCrudUseCase, LotCountUseCase {
     @Override
     public Long countLots() {
         return repository.countLots();
+    }
+
+    @Override
+    public List<Lot> findAvailableLotsByProductOrderedByExpiration(Long productId) {
+        return repository.findAvailableLotsByProductOrderedByExpiration(productId);
     }
 
 }

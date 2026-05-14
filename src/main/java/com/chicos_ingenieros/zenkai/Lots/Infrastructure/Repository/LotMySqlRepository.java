@@ -3,6 +3,7 @@ package com.chicos_ingenieros.zenkai.Lots.Infrastructure.Repository;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotRepository;
+import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
 import com.chicos_ingenieros.zenkai.Lots.Infrastructure.Entity.LotEntity;
 import com.chicos_ingenieros.zenkai.Lots.Infrastructure.Mapper.LotMapper;
 import lombok.RequiredArgsConstructor;
@@ -44,5 +45,15 @@ public class LotMySqlRepository implements LotRepository {
     @Override
     public Long countLots() {
         return repository.count();
+    }
+
+    @Override
+    public List<Lot> findAvailableLotsByProductOrderedByExpiration(Long productId) {
+        return repository
+                .findAvailableLotsOrderedByExpiration(
+                        productId)
+                .stream()
+                .map(mapper::lotEntityToLot)
+                .toList();
     }
 }

@@ -1,4 +1,12 @@
 package com.chicos_ingenieros.zenkai.Exceptions.Domain;
 
-public class IlegalActionException {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+@AllArgsConstructor
+public class IlegalActionException extends RuntimeException{
+    String message;
 }

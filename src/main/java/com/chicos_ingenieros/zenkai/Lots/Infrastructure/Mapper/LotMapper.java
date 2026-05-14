@@ -10,6 +10,7 @@ import org.mapstruct.Mapping;
 public interface LotMapper {
 
     @Mapping(target = "productId", source = "product.productId")
+    @Mapping(target = "productPrice", source = "product.price")
     Lot lotEntityToLot(LotEntity lotEntity);
 
     @Mapping(target = "product.productId", source = "productId")

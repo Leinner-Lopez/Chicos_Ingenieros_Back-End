@@ -13,4 +13,6 @@ public interface LotRepository {
     void deleteById(Long id);
 
     Long countLots();
+
+    List<Lot> findAvailableLotsByProductOrderedByExpiration(Long productId);
 }
