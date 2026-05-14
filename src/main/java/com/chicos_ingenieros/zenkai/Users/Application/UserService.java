@@ -6,6 +6,7 @@ import com.chicos_ingenieros.zenkai.Users.Application.UseCases.UserCountUseCase;
 import com.chicos_ingenieros.zenkai.Users.Application.UseCases.UserCrudUseCase;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
+import com.chicos_ingenieros.zenkai.Users.Domain.UserStatus;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserDTOMapper;
 import lombok.RequiredArgsConstructor;
@@ -64,10 +65,10 @@ public class UserService implements UserCrudUseCase, UserCountUseCase {
     @Override
     public User updateUser(Long id, User user) {
         User UserDB = repository.findById(id);
-        UserDB.setFirst_name(user.getFirst_name());
-        UserDB.setLast_name(user.getLast_name());
+        UserDB.setFirstName(user.getFirstName());
+        UserDB.setLastName(user.getLastName());
         UserDB.setEmail(user.getEmail());
-        UserDB.setPhone_number(user.getPhone_number());
+        UserDB.setPhoneNumber(user.getPhoneNumber());
         UserDB.setRole(user.getRole());
         UserDB.setStatus(user.getStatus());
         if(user.getPassword() != null && !user.getPassword().isEmpty()){
@@ -82,7 +83,8 @@ public class UserService implements UserCrudUseCase, UserCountUseCase {
         if(UserDB == null){
             throw new ResourceNotFoundException("User with id " + id + " not found");
         }
-        repository.deleteById(id);
+        UserDB.setStatus(UserStatus.INACTIVE);
+        repository.save(UserDB);
     }
 
     @Override

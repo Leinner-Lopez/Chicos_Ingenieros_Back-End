@@ -8,9 +8,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
 
-    @Mapping(target = "products", ignore = true)
     Category categoryEntityToCategory(CategoryEntity categoryEntity);
 
-    @Mapping(target = "products", ignore = true)
     CategoryEntity categoryToCategoryEntity(Category category);
 }

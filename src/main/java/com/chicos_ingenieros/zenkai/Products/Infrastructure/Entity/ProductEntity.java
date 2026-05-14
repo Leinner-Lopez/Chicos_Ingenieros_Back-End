@@ -21,7 +21,7 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long product_id;
+    private Long productId;
 
     private String name;
 
@@ -30,12 +30,9 @@ public class ProductEntity {
 
     private String description;
 
-    private Integer min_stock;
+    private Integer minStock;
 
     @JoinColumn(name="category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private CategoryEntity category;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<LotEntity> lots;
 }

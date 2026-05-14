@@ -44,7 +44,7 @@ public class ProductController {
 
     @PutMapping
     public ResponseEntity<Product> update(@RequestBody Product product) {
-        Product productDB = service.updateProduct(product.getProduct_id(), product);
+        Product productDB = service.updateProduct(product.getProductId(), product);
         return new ResponseEntity<>(productDB, HttpStatus.OK);
     }
 

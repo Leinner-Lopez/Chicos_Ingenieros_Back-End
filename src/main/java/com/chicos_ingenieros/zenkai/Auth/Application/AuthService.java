@@ -12,6 +12,7 @@ import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,8 @@ public class AuthService implements LoginUserCase {
         String token = jwtService.getToken(user);
         return AuthResponse.builder().token(token)
                 .email(user.getUsername())
-                .userId(userService.findUserByEmail(user.getUsername()).getUser_id())
+                .userId(userService.findUserByEmail(user.getUsername()).getUserId())
+                .role(user.getAuthorities().stream().map(GrantedAuthority::getAuthority).findFirst().get())
                 .build();
     }
 
@@ -39,10 +41,10 @@ public class AuthService implements LoginUserCase {
     public AuthResponse register(RegisterRequest request){
         User user = User.builder()
                 .email(request.getEmail())
-                .documentNumber(request.getDocument_number())
-                .phone_number(request.getPhone_number())
-                .first_name(request.getFirst_name())
-                .last_name(request.getLast_name())
+                .documentNumber(request.getDocumentNumber())
+                .phoneNumber(request.getPhoneNumber())
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
                 .password(request.getPassword())
                 .role(Role.CUSTOMER)
                 .status(UserStatus.ACTIVE)
@@ -52,7 +54,8 @@ public class AuthService implements LoginUserCase {
         return AuthResponse.builder()
                 .token(jwtService.getToken(userMapper.userToUserEntity(user)))
                 .email(userDB.getEmail())
-                .userId(userDB.getUser_id())
+                .userId(userDB.getUserId())
+                .role(userDB.getRole().name())
                 .build();
     }
 }

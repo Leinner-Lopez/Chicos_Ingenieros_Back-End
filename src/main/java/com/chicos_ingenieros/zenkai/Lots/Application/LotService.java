@@ -36,7 +36,7 @@ public class LotService implements LotCrudUseCase, LotCountUseCase {
         if (lotDB != null) {
             lotDB.setExpirationDate(lot.getExpirationDate());
             lotDB.setStatus(lot.getStatus());
-            lotDB.setProduct(lot.getProduct());
+            lotDB.setProductId(lot.getProductId());
             lotDB.setStockQuantity(lot.getStockQuantity());
             return repository.save(lotDB);
         }

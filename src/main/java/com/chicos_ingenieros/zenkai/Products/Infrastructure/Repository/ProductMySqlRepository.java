@@ -19,20 +19,20 @@ public class ProductMySqlRepository implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        ProductEntity saved = repository.save(mapper.toEntity(product));
-        return mapper.toDomain(saved);
+        ProductEntity saved = repository.save(mapper.ProducttoProductEntity(product));
+        return mapper.ProductEntitytoProduct(saved);
     }
 
     @Override
     public Product findById(Long id) {
 
-        return repository.findById(id).map(mapper::toDomain).orElseThrow(() ->
+        return repository.findById(id).map(mapper::ProductEntitytoProduct).orElseThrow(() ->
                 new ResourceNotFoundException("Product wit id "+id+" not found"));
     }
 
     @Override
     public List<Product> findAll() {
-        return repository.findAll().stream().map(mapper::toDomain).toList();
+        return repository.findAll().stream().map(mapper::ProductEntitytoProduct).toList();
     }
 
     @Override

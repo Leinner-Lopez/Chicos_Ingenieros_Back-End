@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class LotEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLot;
+    private Long lotId;
 
     private LocalDate expirationDate;
     private Integer stockQuantity;

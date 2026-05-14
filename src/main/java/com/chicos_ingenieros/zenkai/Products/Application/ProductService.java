@@ -42,8 +42,8 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase {
         ProductDB.setName(product.getName());
         ProductDB.setPrice(product.getPrice());
         ProductDB.setDescription(product.getDescription());
-        ProductDB.setMin_stock(product.getMin_stock());
-        ProductDB.setCategory(product.getCategory());
+        ProductDB.setMinStock(product.getMinStock());
+        ProductDB.setCategoryId(product.getCategoryId());
         return repository.save(ProductDB);
     }
 

@@ -24,18 +24,18 @@ public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long userId;
 
     @Column(unique = true)
     private String documentNumber;
 
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
 
     @Column(unique = true, nullable = false)
     private String email;
 
-    private String phone_number;
+    private String phoneNumber;
     private String password;
 
     @Enumerated(EnumType.STRING)

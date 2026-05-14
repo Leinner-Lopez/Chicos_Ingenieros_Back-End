@@ -50,7 +50,7 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<User> update(@RequestBody User user) {
-        User userDB = service.updateUser(user.getUser_id(), user);
+        User userDB = service.updateUser(user.getUserId(), user);
         return new ResponseEntity<>(userDB, HttpStatus.OK);
     }
 

@@ -40,7 +40,7 @@ public class LotController {
 
     @PutMapping
     public ResponseEntity<Lot> update(@RequestBody Lot Lot) {
-        Lot LotDB = service.updateLot(Lot.getIdLot(),Lot);
+        Lot LotDB = service.updateLot(Lot.getLotId(),Lot);
         return new ResponseEntity<>(LotDB, HttpStatus.OK);
     }
 

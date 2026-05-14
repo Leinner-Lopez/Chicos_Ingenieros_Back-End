@@ -1,15 +1,16 @@
 package com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper;
 
-import com.chicos_ingenieros.zenkai.Categories.Infrastructure.Mapper.CategoryMapper;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {CategoryMapper.class })
+@Mapper(componentModel = "spring")
 public interface ProductDTOMapper {
-    @Mapping(source= "category.name", target = "categoryName")
+
     ProductDTO productToProductDTO(Product product);
-    @Mapping(source= "categoryName", target = "category.name")
+
+    @Mapping(target = "categoryId", ignore = true)
+    @Mapping(target = "minStock", ignore = true)
     Product productDTOToProduct(ProductDTO productDTO);
 }
