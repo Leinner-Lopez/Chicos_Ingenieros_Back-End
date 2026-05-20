@@ -39,5 +39,7 @@ build/
 .env
 
 #Logs
-src/main/java/com/chicos_ingenieros/zenkai/Logs/*.log
-Logs/history/
+Logs/backend/*.log
+Logs/backend/history/*.log
+Logs/frontend/*.log
+Logs/frontend/history/*.log
