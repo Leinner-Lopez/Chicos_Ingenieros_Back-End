@@ -64,27 +64,27 @@ public class UserService implements UserCrudUseCase, UserCountUseCase {
 
     @Override
     public User updateUser(Long id, User user) {
-        User UserDB = repository.findById(id);
-        UserDB.setFirstName(user.getFirstName());
-        UserDB.setLastName(user.getLastName());
-        UserDB.setEmail(user.getEmail());
-        UserDB.setPhoneNumber(user.getPhoneNumber());
-        UserDB.setRole(user.getRole());
-        UserDB.setStatus(user.getStatus());
+        User userDb = repository.findById(id);
+        userDb.setFirstName(user.getFirstName());
+        userDb.setLastName(user.getLastName());
+        userDb.setEmail(user.getEmail());
+        userDb.setPhoneNumber(user.getPhoneNumber());
+        userDb.setRole(user.getRole());
+        userDb.setStatus(user.getStatus());
         if(user.getPassword() != null && !user.getPassword().isEmpty()){
-            UserDB.setPassword(encoder.encode(user.getPassword()));
+            userDb.setPassword(encoder.encode(user.getPassword()));
         }
-        return repository.save(UserDB);
+        return repository.save(userDb);
     }
 
     @Override
     public void deleteUserById(Long id) {
-        User UserDB = repository.findById(id);
-        if(UserDB == null){
+        User userDb = repository.findById(id);
+        if(userDb == null){
             throw new ResourceNotFoundException("User with id " + id + " not found");
         }
-        UserDB.setStatus(UserStatus.INACTIVE);
-        repository.save(UserDB);
+        userDb.setStatus(UserStatus.INACTIVE);
+        repository.save(userDb);
     }
 
     @Override

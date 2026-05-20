@@ -19,4 +19,5 @@ public class Product {
     private Integer minStock;
     private Long categoryId;
     private String categoryName;
+    private String imageUrl;
 }

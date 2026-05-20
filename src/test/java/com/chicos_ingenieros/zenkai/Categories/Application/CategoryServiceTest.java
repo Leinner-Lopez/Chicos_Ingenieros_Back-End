@@ -24,17 +24,17 @@ class CategoryServiceTest {
     private CategoryService service;
 
     Category category = Category.builder()
-            .category_id(null)
+            .categoryId(null)
             .name("Lácteos")
             .description("Productos derivados de la leche").build();
 
     Category savedCategory = Category.builder()
-            .category_id(1L)
+            .categoryId(1L)
             .name("Lácteos")
             .description("Productos derivados de la leche").build();
 
     Category editCategory = Category.builder()
-            .category_id(1L)
+            .categoryId(1L)
             .name("Carnes")
             .description("Productos derivados de la carne animal").build();
 
@@ -71,5 +71,12 @@ class CategoryServiceTest {
     void deleteCategoryById() {
         service.deleteCategoryById(1L);
         verify(repository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    void countCategories(){
+        when(repository.countCategories()).thenReturn(5L);
+        Long result = service.countCategories();
+        assertEquals(5L, result);
     }
 }

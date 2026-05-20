@@ -29,8 +29,10 @@ public class ProductEntity {
     private BigDecimal price;
 
     private String description;
-
     private Integer minStock;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @JoinColumn(name="category_id")
     @ManyToOne(fetch = FetchType.LAZY)

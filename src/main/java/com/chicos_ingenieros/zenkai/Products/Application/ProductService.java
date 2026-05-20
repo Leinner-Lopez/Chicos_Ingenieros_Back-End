@@ -1,5 +1,6 @@
 package com.chicos_ingenieros.zenkai.Products.Application;
 
+import com.chicos_ingenieros.zenkai.Cloudinary.Application.CloudinaryService;
 import com.chicos_ingenieros.zenkai.Products.Application.UseCases.ProductCountUseCase;
 import com.chicos_ingenieros.zenkai.Products.Application.UseCases.ProductCrudUseCase;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
@@ -9,7 +10,9 @@ import com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper.ProductDTOMap
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -18,9 +21,12 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase {
 
     private final ProductRepository repository;
     private final ProductDTOMapper mapper;
+    private final CloudinaryService cloudinaryService;
 
     @Override
-    public Product saveProduct(Product product) {
+    public Product saveProduct(Product product, MultipartFile image) throws IOException {
+        String imageUrl = cloudinaryService.uploadImage(image);
+        product.setImageUrl(imageUrl);
         return repository.save(product);
     }
 

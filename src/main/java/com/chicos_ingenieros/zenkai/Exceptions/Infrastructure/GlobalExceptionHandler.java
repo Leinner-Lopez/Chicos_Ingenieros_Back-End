@@ -4,6 +4,7 @@ import com.chicos_ingenieros.zenkai.Exceptions.Domain.ErrorDetails;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.IlegalActionException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -22,6 +24,7 @@ public class GlobalExceptionHandler {
                 ex.getMessage(),
                 request.getDescription(false),
                 "NOT FOUND");
+        log.error(error.toString());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
@@ -33,6 +36,7 @@ public class GlobalExceptionHandler {
                 request.getDescription(false),
                 "DUPLICATE"
         );
+        log.error(error.toString());
         return new ResponseEntity<>(error,HttpStatus.CONFLICT);
     }
 
@@ -44,6 +48,7 @@ public class GlobalExceptionHandler {
                 request.getDescription(false),
                 "ILLEGAL"
         );
+        log.error(error.toString());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

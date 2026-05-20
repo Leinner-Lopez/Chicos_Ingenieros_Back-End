@@ -3,11 +3,15 @@ package com.chicos_ingenieros.zenkai.Products.Infrastructure;
 import com.chicos_ingenieros.zenkai.Products.Application.ProductService;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,9 +21,12 @@ public class ProductController {
 
     private final ProductService service;
 
-    @PostMapping
-    public ResponseEntity<Product> save(@RequestBody Product product) {
-        Product saved = service.saveProduct(product);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Product> save(
+            @RequestPart("data") @Valid Product product,
+            @RequestPart("image") MultipartFile image) throws IOException {
+
+        Product saved = service.saveProduct(product, image);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
