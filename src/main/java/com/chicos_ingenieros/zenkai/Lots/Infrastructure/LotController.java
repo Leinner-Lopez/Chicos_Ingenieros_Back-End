@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Lots.Infrastructure;
 
 import com.chicos_ingenieros.zenkai.Lots.Application.LotService;
 import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
+import com.chicos_ingenieros.zenkai.Lots.Infrastructure.DTO.LotDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,26 +23,26 @@ public class LotController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Lot>> getAll() {
-        List<Lot> lotList = service.findAllLots();
+    public ResponseEntity<List<LotDTO>> getAll() {
+        List<LotDTO> lotList = service.findAllLots();
         return new ResponseEntity<>(lotList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Lot> findById(@PathVariable Long id){
-        Lot Lot = service.findLotById(id);
-        return new ResponseEntity<>(Lot, HttpStatus.OK);
+        Lot lot = service.findLotById(id);
+        return new ResponseEntity<>(lot, HttpStatus.OK);
     }
 
     @GetMapping("/count")
-    public Long getCountCategories() {
+    public Long getCountLots() {
         return service.countLots();
     }
 
     @PutMapping
-    public ResponseEntity<Lot> update(@RequestBody Lot Lot) {
-        Lot LotDB = service.updateLot(Lot.getLotId(),Lot);
-        return new ResponseEntity<>(LotDB, HttpStatus.OK);
+    public ResponseEntity<Lot> update(@RequestBody Lot lot) {
+        Lot lotDB = service.updateLot(lot.getLotId(),lot);
+        return new ResponseEntity<>(lotDB, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,11 +1,14 @@
 package com.chicos_ingenieros.zenkai.Products.Application;
 
 import com.chicos_ingenieros.zenkai.Cloudinary.Application.CloudinaryService;
+import com.chicos_ingenieros.zenkai.Products.Application.UseCases.DashboardAdminUseCase;
+import com.chicos_ingenieros.zenkai.Products.Application.UseCases.InventoryUseCase;
 import com.chicos_ingenieros.zenkai.Products.Application.UseCases.ProductCountUseCase;
 import com.chicos_ingenieros.zenkai.Products.Application.UseCases.ProductCrudUseCase;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper.ProductDTOMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +20,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService implements ProductCrudUseCase, ProductCountUseCase {
+public class ProductService implements ProductCrudUseCase, ProductCountUseCase, DashboardAdminUseCase, InventoryUseCase {
 
     private final ProductRepository repository;
     private final ProductDTOMapper mapper;
@@ -44,13 +47,13 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase {
 
     @Override
     public Product updateProduct(Long id, Product product) {
-        Product ProductDB = repository.findById(id);
-        ProductDB.setName(product.getName());
-        ProductDB.setPrice(product.getPrice());
-        ProductDB.setDescription(product.getDescription());
-        ProductDB.setMinStock(product.getMinStock());
-        ProductDB.setCategoryId(product.getCategoryId());
-        return repository.save(ProductDB);
+        Product productDb = repository.findById(id);
+        productDb.setName(product.getName());
+        productDb.setPrice(product.getPrice());
+        productDb.setDescription(product.getDescription());
+        productDb.setMinStock(product.getMinStock());
+        productDb.setCategoryId(product.getCategoryId());
+        return repository.save(productDb);
     }
 
     @Override
@@ -61,5 +64,15 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase {
     @Override
     public Long countProducts() {
         return repository.countProducts();
+    }
+
+    @Override
+    public Long productsWithCriticalStock() {
+        return repository.countProductsWithCriticalStock();
+    }
+
+    @Override
+    public List<ProductInventoryDTO> findGeneralInventory() {
+        return repository.findGeneralInventory();
     }
 }

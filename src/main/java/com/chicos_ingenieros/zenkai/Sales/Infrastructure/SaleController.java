@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Sales.Infrastructure;
 
 import com.chicos_ingenieros.zenkai.Sales.Application.SaleService;
 import com.chicos_ingenieros.zenkai.Sales.Domain.Sale;
+import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleItemRequest;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleResponse;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,11 @@ public class SaleController {
     @GetMapping
     public ResponseEntity<List<SaleResponse>> findAllSales() {
         return ResponseEntity.ok(saleService.findAllSales());
+    }
+
+    @GetMapping("history")
+    public ResponseEntity<List<SaleHistoryDTO>> getSaleHistory(){
+        return new ResponseEntity<>(saleService.getSaleHistory(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

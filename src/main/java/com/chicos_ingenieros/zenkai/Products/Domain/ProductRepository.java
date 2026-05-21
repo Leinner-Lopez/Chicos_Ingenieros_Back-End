@@ -1,5 +1,7 @@
 package com.chicos_ingenieros.zenkai.Products.Domain;
 
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
+
 import java.util.List;
 
 public interface ProductRepository {
@@ -13,4 +15,8 @@ public interface ProductRepository {
     void deleteById(Long id);
 
     Long countProducts();
+
+    Long countProductsWithCriticalStock();
+
+    List<ProductInventoryDTO> findGeneralInventory();
 }

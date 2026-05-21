@@ -3,6 +3,7 @@ package com.chicos_ingenieros.zenkai.Products.Infrastructure;
 import com.chicos_ingenieros.zenkai.Products.Application.ProductService;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,11 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getAll() {
         List<ProductDTO> productList = service.findAllProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
+    @GetMapping("/inventory")
+    public  ResponseEntity<List<ProductInventoryDTO>> getInventory() {
+        return new ResponseEntity<>(service.findGeneralInventory(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

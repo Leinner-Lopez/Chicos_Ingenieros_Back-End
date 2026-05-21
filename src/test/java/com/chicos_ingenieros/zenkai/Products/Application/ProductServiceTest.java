@@ -113,4 +113,10 @@ class ProductServiceTest {
         Long result = service.countProducts();
         assertEquals(5L, result);
     }
+    @Test
+    void productsWithCriticalStock(){
+        when(repository.countProductsWithCriticalStock()).thenReturn(5L);
+        Long result = service.productsWithCriticalStock();
+        assertEquals(5L, result);
+    }
 }

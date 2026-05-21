@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Sales.Infrastructure.Repository;
 
 import com.chicos_ingenieros.zenkai.Sales.Domain.Sale;
 import com.chicos_ingenieros.zenkai.Sales.Domain.SaleRepository;
+import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Entity.SaleEntity;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Mapper.SaleMapper;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,10 @@ public class SaleMySqlRepository implements SaleRepository {
                 .stream()
                 .map(saleMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public List<SaleHistoryDTO> getSaleHistory() {
+        return springRepository.getSaleHistory();
     }
 }

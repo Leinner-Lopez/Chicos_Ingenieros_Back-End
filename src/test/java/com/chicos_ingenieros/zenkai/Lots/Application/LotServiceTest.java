@@ -3,6 +3,7 @@ package com.chicos_ingenieros.zenkai.Lots.Application;
 import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotRepository;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
+import com.chicos_ingenieros.zenkai.Lots.Infrastructure.DTO.LotDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -48,6 +49,8 @@ class LotServiceTest {
             .status(LotStatus.AVAILABLE)
             .build();
 
+    LotDTO lotDTO = new LotDTO(1L, LocalDate.of(2025, 12, 31),50,"Leche");
+
     // ─── saveLot ─────────────────────────────────────────────────
 
     @Test
@@ -84,12 +87,12 @@ class LotServiceTest {
 
     @Test
     void findAllLots() {
-        when(repository.findAll()).thenReturn(List.of(savedLot));
+        when(repository.findAll()).thenReturn(List.of(lotDTO));
 
-        List<Lot> result = service.findAllLots();
+        List<LotDTO> result = service.findAllLots();
 
         assertEquals(1, result.size());
-        assertEquals(savedLot, result.getFirst());
+        assertEquals(lotDTO, result.getFirst());
     }
 
     // ─── updateLot ───────────────────────────────────────────────

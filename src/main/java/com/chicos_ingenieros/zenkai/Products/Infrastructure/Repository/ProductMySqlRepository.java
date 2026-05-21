@@ -1,8 +1,10 @@
 package com.chicos_ingenieros.zenkai.Products.Infrastructure.Repository;
 
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
+import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Entity.ProductEntity;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
@@ -43,5 +45,15 @@ public class ProductMySqlRepository implements ProductRepository {
     @Override
     public Long countProducts() {
         return repository.count();
+    }
+
+    @Override
+    public Long countProductsWithCriticalStock() {
+        return repository.countProductWithCriticalStock(LotStatus.AVAILABLE);
+    }
+
+    @Override
+    public List<ProductInventoryDTO> findGeneralInventory() {
+        return repository.findGeneralInventory(LotStatus.AVAILABLE);
     }
 }

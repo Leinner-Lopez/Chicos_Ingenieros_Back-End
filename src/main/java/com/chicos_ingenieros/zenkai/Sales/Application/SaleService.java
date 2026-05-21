@@ -8,9 +8,11 @@ import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetail;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetailRepository;
 import com.chicos_ingenieros.zenkai.Sales.Application.UseCases.SaleCrudUseCase;
+import com.chicos_ingenieros.zenkai.Sales.Application.UseCases.SaleHistoryUseCase;
 import com.chicos_ingenieros.zenkai.Sales.Application.UseCases.SaleQueryUseCase;
 import com.chicos_ingenieros.zenkai.Sales.Domain.Sale;
 import com.chicos_ingenieros.zenkai.Sales.Domain.SaleRepository;
+import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleItemRequest;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleResponse;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Mapper.SaleMapper;
@@ -25,7 +27,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class SaleService implements SaleCrudUseCase, SaleQueryUseCase {
+public class SaleService implements SaleCrudUseCase, SaleQueryUseCase, SaleHistoryUseCase {
     private final SaleRepository saleRepository;
     private final SaleDetailRepository saleDetailRepository;
     private final LotRepository lotRepository;
@@ -132,5 +134,10 @@ public class SaleService implements SaleCrudUseCase, SaleQueryUseCase {
 
         saleDetailRepository.deleteBySaleId(saleId);
         saleRepository.deleteById(saleId);
+    }
+
+    @Override
+    public List<SaleHistoryDTO> getSaleHistory() {
+        return saleRepository.getSaleHistory();
     }
 }

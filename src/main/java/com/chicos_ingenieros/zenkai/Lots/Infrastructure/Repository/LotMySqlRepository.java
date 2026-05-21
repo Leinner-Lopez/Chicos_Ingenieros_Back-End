@@ -5,10 +5,15 @@ import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotRepository;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
 import com.chicos_ingenieros.zenkai.Lots.Infrastructure.Entity.LotEntity;
+import com.chicos_ingenieros.zenkai.Lots.Infrastructure.DTO.LotDTO;
 import com.chicos_ingenieros.zenkai.Lots.Infrastructure.Mapper.LotMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -32,9 +37,9 @@ public class LotMySqlRepository implements LotRepository {
     }
 
     @Override
-    public List<Lot> findAll() {
+    public List<LotDTO> findAll() {
 
-        return repository.findAll().stream().map(mapper::lotEntityToLot).toList();
+        return repository.findAll().stream().map(mapper::lotEntityToLotDTO).toList();
     }
 
     @Override
@@ -55,5 +60,21 @@ public class LotMySqlRepository implements LotRepository {
                 .stream()
                 .map(mapper::lotEntityToLot)
                 .toList();
+    }
+
+    @Override
+    public List<LotDTO> findLotsExpireThisWeek() {
+        LocalDate hoy = LocalDate.now();
+        LocalDate finDeSemana = hoy.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+        return repository.findLotsExpireThisWeek(hoy, finDeSemana, LotStatus.AVAILABLE)
+                .stream().map(mapper::lotEntityToLotDTO).toList();
+    }
+
+    @Override
+    public BigDecimal calculateCostOfShrinksOfTheMonth() {
+        LocalDate today = LocalDate.now();
+        LocalDate monthStart = today.with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate monthFinish = today.with(TemporalAdjusters.lastDayOfMonth());
+        return repository.calculateCostOfShrinksOfTheMonth(LotStatus.EXPIRED, monthStart, monthFinish);
     }
 }
