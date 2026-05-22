@@ -55,6 +55,12 @@ public class ProductController {
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<ProductDTO>> getProductsInCategory(@PathVariable("categoryId") Long categoryId) {
+        List<ProductDTO> productList = service.findByCategory(categoryId);
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
     @PutMapping
     public ResponseEntity<Product> update(@RequestBody Product product) {
         Product productDB = service.updateProduct(product.getProductId(), product);

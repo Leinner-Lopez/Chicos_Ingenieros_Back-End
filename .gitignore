@@ -42,4 +42,5 @@ build/
 Logs/backend/*.log
 Logs/backend/history/*.log
 Logs/frontend/*.log
+Logs/frontend/.audit.json
 Logs/frontend/history/*.log

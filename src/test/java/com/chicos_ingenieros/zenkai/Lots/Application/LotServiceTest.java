@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -165,5 +166,19 @@ class LotServiceTest {
         List<Lot> result = service.findAvailableLotsByProductOrderedByExpiration(99L);
 
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void findLotsExpireThisWeek(){
+        when(repository.findLotsExpireThisWeek()).thenReturn(List.of(lotDTO));
+        List<LotDTO> result = service.findLotsExpireThisWeek();
+        assertEquals(List.of(lotDTO), result);
+    }
+
+    @Test
+    void calculateCostOfShrinksOfTheMonth(){
+        when(repository.calculateCostOfShrinksOfTheMonth()).thenReturn(new BigDecimal("3500.00"));
+        BigDecimal result = service.calculateCostOfShrinksOfTheMonth();
+        assertEquals(new BigDecimal("3500.00"), result);
     }
 }

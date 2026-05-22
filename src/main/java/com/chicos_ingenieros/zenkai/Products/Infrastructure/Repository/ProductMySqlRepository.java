@@ -4,6 +4,7 @@ import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Entity.ProductEntity;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper.ProductMapper;
@@ -33,8 +34,8 @@ public class ProductMySqlRepository implements ProductRepository {
     }
 
     @Override
-    public List<Product> findAll() {
-        return repository.findAll().stream().map(mapper::ProductEntitytoProduct).toList();
+    public List<ProductDTO> findAll() {
+        return repository.findCatalogProductsWithStock();
     }
 
     @Override
@@ -55,5 +56,10 @@ public class ProductMySqlRepository implements ProductRepository {
     @Override
     public List<ProductInventoryDTO> findGeneralInventory() {
         return repository.findGeneralInventory(LotStatus.AVAILABLE);
+    }
+
+    @Override
+    public List<ProductDTO> findByCategory(Long categoryId) {
+        return repository.findByCategory_CategoryId(categoryId);
     }
 }

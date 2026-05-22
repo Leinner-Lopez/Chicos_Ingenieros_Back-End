@@ -41,8 +41,7 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase, 
     @Transactional(readOnly = true)
     @Override
     public List<ProductDTO> findAllProducts() {
-        return repository.findAll().stream()
-                .map(mapper::productToProductDTO).toList();
+        return repository.findAll();
     }
 
     @Override
@@ -74,5 +73,10 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase, 
     @Override
     public List<ProductInventoryDTO> findGeneralInventory() {
         return repository.findGeneralInventory();
+    }
+
+    @Override
+    public List<ProductDTO> findByCategory(Long categoryId) {
+        return repository.findByCategory(categoryId);
     }
 }

@@ -14,6 +14,11 @@
             "date": 1779323104088,
             "name": "/app/logs/frontend/history/frontend-2026-05-21.log",
             "hash": "d33527fc71a1719bb722fd34fcd824b442d43a22858a841bf90cb2f6f244c6dd"
+        },
+        {
+            "date": 1779408042523,
+            "name": "/app/logs/frontend/history/frontend-2026-05-22.log",
+            "hash": "86b885e280b75e637305bc6dc02edb0a7cef7288cf03e1c2b74522a3fc33f4e8"
         }
     ],
     "hashType": "sha256"

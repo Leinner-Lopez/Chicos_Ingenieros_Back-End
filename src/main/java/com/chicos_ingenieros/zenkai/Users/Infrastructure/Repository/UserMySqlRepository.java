@@ -1,6 +1,5 @@
 package com.chicos_ingenieros.zenkai.Users.Infrastructure.Repository;
 
-import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Entity.UserEntity;

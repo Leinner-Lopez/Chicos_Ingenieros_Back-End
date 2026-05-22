@@ -71,7 +71,7 @@ public class UserService implements UserCrudUseCase, UserCountUseCase {
         userDb.setPhoneNumber(user.getPhoneNumber());
         userDb.setRole(user.getRole());
         userDb.setStatus(user.getStatus());
-        if(user.getPassword() != null && !user.getPassword().isEmpty()){
+        if(user.getPassword() != null && !user.getPassword().isBlank()){
             userDb.setPassword(encoder.encode(user.getPassword()));
         }
         return repository.save(userDb);

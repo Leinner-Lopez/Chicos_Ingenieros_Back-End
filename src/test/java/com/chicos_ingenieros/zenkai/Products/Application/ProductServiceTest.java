@@ -5,6 +5,7 @@ import com.chicos_ingenieros.zenkai.Cloudinary.Application.CloudinaryService;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper.ProductDTOMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -66,6 +67,8 @@ class ProductServiceTest {
             .minStock(10)
             .categoryId(lacteos.getCategoryId()).build();
 
+    ProductInventoryDTO productInventoryDTO = new ProductInventoryDTO(1L, "Queso", 10, 20L);
+
 
     @Test
     void saveProduct() throws IOException {
@@ -118,5 +121,12 @@ class ProductServiceTest {
         when(repository.countProductsWithCriticalStock()).thenReturn(5L);
         Long result = service.productsWithCriticalStock();
         assertEquals(5L, result);
+    }
+
+    @Test
+    void findGeneralInventory(){
+        when(repository.findGeneralInventory()).thenReturn(List.of(productInventoryDTO));
+        List<ProductInventoryDTO> result = service.findGeneralInventory();
+        assertEquals(List.of(productInventoryDTO), result);
     }
 }

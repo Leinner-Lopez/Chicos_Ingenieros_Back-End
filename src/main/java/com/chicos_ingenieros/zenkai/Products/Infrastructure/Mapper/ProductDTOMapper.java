@@ -12,6 +12,5 @@ public interface ProductDTOMapper {
 
     @Mapping(target = "categoryId", ignore = true)
     @Mapping(target = "minStock", ignore = true)
-    @Mapping(target = "description", ignore = true)
     Product productDTOToProduct(ProductDTO productDTO);
 }

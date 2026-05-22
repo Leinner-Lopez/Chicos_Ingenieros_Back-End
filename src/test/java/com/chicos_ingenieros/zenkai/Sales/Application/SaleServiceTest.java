@@ -9,6 +9,7 @@ import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetail;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetailRepository;
 import com.chicos_ingenieros.zenkai.Sales.Domain.Sale;
 import com.chicos_ingenieros.zenkai.Sales.Domain.SaleRepository;
+import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleItemRequest;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleResponse;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Mapper.SaleMapper;
@@ -20,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -204,5 +206,13 @@ class SaleServiceTest {
         assertThrows(RuntimeException.class, () -> service.cancelSale(99L));
         verify(saleDetailRepository, never()).deleteBySaleId(any());
         verify(saleRepository, never()).deleteById(any());
+    }
+
+    @Test
+    void getSaleHistory(){
+        SaleHistoryDTO saleHistoryDTO = new SaleHistoryDTO(1L, LocalDateTime.now(), "Queso", 1L, 4, new BigDecimal("3500.00"), new BigDecimal("80000.00"));
+        when(saleRepository.getSaleHistory()).thenReturn(List.of(saleHistoryDTO));
+        List<SaleHistoryDTO> result = service.getSaleHistory();
+        assertEquals(List.of(saleHistoryDTO), result);
     }
 }
