@@ -6,13 +6,12 @@ import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Domain.ProductRepository;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
-import com.chicos_ingenieros.zenkai.Products.Infrastructure.Mapper.ProductDTOMapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,101 +31,195 @@ class ProductServiceTest {
     @Mock
     private ProductRepository repository;
 
-    @Spy
-    private ProductDTOMapper mapper = Mappers.getMapper(ProductDTOMapper.class);
-
     @InjectMocks
     private ProductService service;
 
-    Category lacteos = Category.builder()
-            .categoryId(1L)
-            .name("Lácteos")
-            .description("Productos derivados de la leche").build();
+    private Product productSetup;
+    private Product savedProduct;
+    private Product editProduct;
+    private ProductDTO productDTO;
+    private ProductInventoryDTO productInventoryDTO;
 
-    Product product = Product.builder()
-            .productId(null)
-            .name("Leche")
-            .price(new BigDecimal("3500.00"))
-            .description("Bolsa 1L")
-            .minStock(10)
-            .categoryId(lacteos.getCategoryId()).build();
+    @BeforeEach
+    void setUp() {
+        Category lacteos = Category.builder()
+                .categoryId(1L)
+                .name("Lácteos")
+                .description("Productos derivados de la leche")
+                .build();
 
-    Product savedProduct = Product.builder()
-            .productId(1L)
-            .name("Leche")
-            .price(new BigDecimal("3500.00"))
-            .description("Bolsa 1L")
-            .minStock(10)
-            .categoryId(lacteos.getCategoryId()).build();
+        productSetup = Product.builder()
+                .productId(null)
+                .name("Leche")
+                .price(new BigDecimal("3500.00"))
+                .description("Bolsa 1L")
+                .minStock(10)
+                .categoryId(lacteos.getCategoryId())
+                .build();
 
-    Product editProduct = Product.builder()
-            .productId(1L)
-            .name("Queso")
-            .price(new BigDecimal("4500.00"))
-            .description("Tipo Campesino")
-            .minStock(10)
-            .categoryId(lacteos.getCategoryId()).build();
+        savedProduct = Product.builder()
+                .productId(1L)
+                .name("Leche")
+                .price(new BigDecimal("3500.00"))
+                .description("Bolsa 1L")
+                .minStock(10)
+                .imageUrl("https://res.cloudinary.com/fake/image.jpg")
+                .categoryId(lacteos.getCategoryId())
+                .build();
 
-    ProductInventoryDTO productInventoryDTO = new ProductInventoryDTO(1L, "Queso", 10, 20L);
+        editProduct = Product.builder()
+                .productId(1L)
+                .name("Queso")
+                .price(new BigDecimal("4500.00"))
+                .description("Tipo Campesino")
+                .minStock(12)
+                .categoryId(lacteos.getCategoryId())
+                .build();
 
+        productDTO = new ProductDTO(1L, "Leche", "Lácteos", new BigDecimal("3500.00"), "https://res.cloudinary.com/fake/image.jpg", "H", 5L);
+        productInventoryDTO = new ProductInventoryDTO(1L, "Leche", 10, 20L);
+    }
 
     @Test
-    void saveProduct() throws IOException {
+    @DisplayName("Debería guardar un producto subiendo la imagen a Cloudinary exitosamente")
+    void saveProductSuccessfully() throws IOException {
+        // Arrange
         MultipartFile image = mock(MultipartFile.class);
         String fakeUrl = "https://res.cloudinary.com/fake/image.jpg";
         when(cloudinaryService.uploadImage(image)).thenReturn(fakeUrl);
         when(repository.save(any(Product.class))).thenReturn(savedProduct);
-        Product result = service.saveProduct(product, image);
-        assertEquals(savedProduct, result);
+
+        // Act
+        Product result = service.saveProduct(productSetup, image);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(savedProduct.getProductId(), result.getProductId());
+        assertEquals(fakeUrl, result.getImageUrl());
         verify(cloudinaryService, times(1)).uploadImage(image);
-        verify(repository, times(1)).save(product);
+        verify(repository, times(1)).save(productSetup);
     }
 
     @Test
-    void findProductById() {
-        when(repository.findById(1L)).thenReturn(savedProduct);
-        Product result = service.findProductById(1L);
+    @DisplayName("Debería buscar y retornar un producto por su ID")
+    void findProductByIdSuccessfully() {
+        // Arrange
+        Long id = 1L;
+        when(repository.findById(id)).thenReturn(savedProduct);
+
+        // Act
+        Product result = service.findProductById(id);
+
+        // Assert
+        assertNotNull(result);
         assertEquals(savedProduct, result);
+        verify(repository, times(1)).findById(id);
     }
 
     @Test
-    void findAllProducts() {
-        when(repository.findAll()).thenReturn(List.of(savedProduct));
+    @DisplayName("Debería listar todos los productos en formato DTO")
+    void findAllProductsSuccessfully() {
+        // Arrange
+        when(repository.findAll()).thenReturn(List.of(productDTO));
+
+        // Act
         List<ProductDTO> result = service.findAllProducts();
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals(1, result.size());
         assertEquals("Leche", result.getFirst().name());
+        verify(repository, times(1)).findAll();
     }
 
     @Test
-    void updateProduct() {
-        when(repository.findById(1L)).thenReturn(savedProduct);
-        when(repository.save(savedProduct)).thenReturn(editProduct);
-        Product result = service.updateProduct(1L, savedProduct);
-        assertEquals(editProduct, result);
+    @DisplayName("Debería actualizar los campos de un producto existente correctamente")
+    void updateProductSuccessfully() {
+        // Arrange
+        Long id = 1L;
+        when(repository.findById(id)).thenReturn(savedProduct);
+        when(repository.save(any(Product.class))).thenReturn(editProduct);
+
+        // Act
+        Product result = service.updateProduct(id, editProduct);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("Queso", result.getName());
+        assertEquals(new BigDecimal("4500.00"), result.getPrice());
+        verify(repository, times(1)).findById(id);
+        verify(repository, times(1)).save(savedProduct);
     }
 
     @Test
-    void deleteProductById() {
-        service.deleteProductById(1L);
-        verify(repository, times(1)).deleteById(1L);
+    @DisplayName("Debería eliminar un producto por su ID")
+    void deleteProductByIdSuccessfully() {
+        // Arrange
+        Long id = 1L;
+
+        // Act
+        service.deleteProductById(id);
+
+        // Assert
+        verify(repository, times(1)).deleteById(id);
     }
 
     @Test
-    void countProducts(){
-        when(repository.countProducts()).thenReturn(5L);
+    @DisplayName("Debería contar la cantidad total de productos")
+    void countProductsSuccessfully() {
+        // Arrange
+        when(repository.countProducts()).thenReturn(15L);
+
+        // Act
         Long result = service.countProducts();
-        assertEquals(5L, result);
-    }
-    @Test
-    void productsWithCriticalStock(){
-        when(repository.countProductsWithCriticalStock()).thenReturn(5L);
-        Long result = service.productsWithCriticalStock();
-        assertEquals(5L, result);
+
+        // Assert
+        assertEquals(15L, result);
+        verify(repository, times(1)).countProducts();
     }
 
     @Test
-    void findGeneralInventory(){
+    @DisplayName("Debería contar los productos con stock crítico")
+    void productsWithCriticalStockSuccessfully() {
+        // Arrange
+        when(repository.countProductsWithCriticalStock()).thenReturn(3L);
+
+        // Act
+        Long result = service.productsWithCriticalStock();
+
+        // Assert
+        assertEquals(3L, result);
+        verify(repository, times(1)).countProductsWithCriticalStock();
+    }
+
+    @Test
+    @DisplayName("Debería retornar la lista general del inventario")
+    void findGeneralInventorySuccessfully() {
+        // Arrange
         when(repository.findGeneralInventory()).thenReturn(List.of(productInventoryDTO));
+
+        // Act
         List<ProductInventoryDTO> result = service.findGeneralInventory();
-        assertEquals(List.of(productInventoryDTO), result);
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals(1, result.size());
+        verify(repository, times(1)).findGeneralInventory();
+    }
+
+    @Test
+    @DisplayName("Debería buscar y retornar productos filtrados por categoría")
+    void findByCategorySuccessfully() {
+        // Arrange
+        Long categoryId = 1L;
+        when(repository.findByCategory(categoryId)).thenReturn(List.of(productDTO));
+
+        // Act
+        List<ProductDTO> result = service.findByCategory(categoryId);
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals(1, result.size());
+        verify(repository, times(1)).findByCategory(categoryId);
     }
 }
