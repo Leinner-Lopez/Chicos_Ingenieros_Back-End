@@ -22,4 +22,6 @@ public interface ProductRepository {
     List<ProductInventoryDTO> findGeneralInventory();
 
     List<ProductDTO> findByCategory(Long categoryId);
+
+    ProductDTO findProductDTOById(Long id);
 }

@@ -206,4 +206,36 @@ class ProductMySqlRepositoryTest {
         assertEquals(productDTO, actualProducts.getFirst());
         verify(repository, times(1)).findByCategory_CategoryId(categoryId);
     }
+
+    @Test
+    @DisplayName("Debería retornar el ProductDTO cuando el ID del producto existe")
+    void findProductDTOByIdShouldReturnDTOWhenIdExists() {
+        // Arrange
+        Long id = 1L;
+        when(repository.findProductDTOById(id)).thenReturn(Optional.of(productDTO));
+
+        // Act
+        ProductDTO result = productMySqlRepository.findProductDTOById(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(productDTO, result);
+        verify(repository, times(1)).findProductDTOById(id);
+    }
+
+    @Test
+    @DisplayName("Debería lanzar ResourceNotFoundException si el ID del producto no existe al buscar por DTO")
+    void findProductDTOByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
+        // Arrange
+        Long id = 99L;
+        when(repository.findProductDTOById(id)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () ->
+                productMySqlRepository.findProductDTOById(id)
+        );
+
+        assertEquals("Product with id 99 not found", exception.getMessage());
+        verify(repository, times(1)).findProductDTOById(id);
+    }
 }

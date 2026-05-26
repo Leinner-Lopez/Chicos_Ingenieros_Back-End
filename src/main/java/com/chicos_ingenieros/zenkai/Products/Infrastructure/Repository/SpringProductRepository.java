@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface SpringProductRepository extends JpaRepository<ProductEntity, Long> {
@@ -43,4 +44,13 @@ public interface SpringProductRepository extends JpaRepository<ProductEntity, Lo
             "LEFT JOIN LotEntity l ON l.product.productId = p.productId " +
             "GROUP BY p.productId, p.name, p.category.name, p.price, p.imageUrl, p.description")
     List<ProductDTO> findCatalogProductsWithStock();
+
+    @Query("SELECT new com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO(" +
+            "p.productId, p.name, p.category.name, p.price, p.imageUrl, p.description, " +
+            "COALESCE(SUM(CASE WHEN l.status IN ('AVAILABLE', 'SOON_EXPIRED') THEN l.stockQuantity ELSE 0 END), 0L)) " +
+            "FROM ProductEntity p " +
+            "LEFT JOIN LotEntity l ON l.product.productId = p.productId " +
+            "WHERE p.productId = :productId " +
+            "GROUP BY p.productId, p.name, p.category.name, p.price, p.imageUrl, p.description")
+    Optional<ProductDTO> findProductDTOById(@Param("productId") Long productId);
 }

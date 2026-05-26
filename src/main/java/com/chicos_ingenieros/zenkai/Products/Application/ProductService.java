@@ -79,4 +79,9 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase, 
     public List<ProductDTO> findByCategory(Long categoryId) {
         return repository.findByCategory(categoryId);
     }
+
+    @Override
+    public ProductDTO findProductDTOById(Long id) {
+        return repository.findProductDTOById(id);
+    }
 }

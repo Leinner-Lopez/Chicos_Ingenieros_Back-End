@@ -13,4 +13,5 @@ public interface ProductCrudUseCase {
     List<ProductDTO> findAllProducts();
     Product updateProduct(Long id, Product product);
     void deleteProductById(Long id);
+    ProductDTO findProductDTOById(Long id);
 }

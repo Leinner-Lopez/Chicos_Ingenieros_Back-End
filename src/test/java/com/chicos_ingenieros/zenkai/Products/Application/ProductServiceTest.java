@@ -222,4 +222,20 @@ class ProductServiceTest {
         assertEquals(1, result.size());
         verify(repository, times(1)).findByCategory(categoryId);
     }
+
+    @Test
+    @DisplayName("Debería retornar el ProductDTO del producto correspondiente al ID dado")
+    void findProductDTOByIdSuccessfully() {
+        // Arrange
+        Long id = 1L;
+        when(repository.findProductDTOById(id)).thenReturn(productDTO);
+
+        // Act
+        ProductDTO result = service.findProductDTOById(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(productDTO, result);
+        verify(repository, times(1)).findProductDTOById(id);
+    }
 }

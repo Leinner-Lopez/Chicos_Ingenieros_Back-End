@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -180,5 +181,12 @@ class LotServiceTest {
         when(repository.calculateCostOfShrinksOfTheMonth()).thenReturn(new BigDecimal("3500.00"));
         BigDecimal result = service.calculateCostOfShrinksOfTheMonth();
         assertEquals(new BigDecimal("3500.00"), result);
+    }
+
+    @Test
+    void updateLotStatuses_delegatesToRepository() {
+        service.updateLotStatuses();
+
+        verify(repository, times(1)).updateLotStatuses(any(LocalDate.class));
     }
 }

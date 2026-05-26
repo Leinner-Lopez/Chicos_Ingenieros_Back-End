@@ -9,6 +9,7 @@ import com.chicos_ingenieros.zenkai.Lots.Infrastructure.DTO.LotDTO;
 import com.chicos_ingenieros.zenkai.Lots.Infrastructure.Mapper.LotMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
@@ -76,5 +77,11 @@ public class LotMySqlRepository implements LotRepository {
         LocalDate monthStart = today.with(TemporalAdjusters.firstDayOfMonth());
         LocalDate monthFinish = today.with(TemporalAdjusters.lastDayOfMonth());
         return repository.calculateCostOfShrinksOfTheMonth(LotStatus.EXPIRED, monthStart, monthFinish);
+    }
+
+    @Override
+    @Transactional
+    public void updateLotStatuses(LocalDate today) {
+        repository.markAsExpired(today);
     }
 }

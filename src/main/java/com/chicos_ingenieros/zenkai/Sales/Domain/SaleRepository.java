@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Sales.Domain;
 
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,4 +13,7 @@ public interface SaleRepository {
     void deleteById(Long saleId);
     List<Sale> findAll();
     List<SaleHistoryDTO> getSaleHistory();
+    Long countSalesByUser(Long userId);
+    BigDecimal getTotalSpentByUser(Long userId);
+    List<SaleHistoryDTO> getRecentPurchasesByUser(Long userId);
 }

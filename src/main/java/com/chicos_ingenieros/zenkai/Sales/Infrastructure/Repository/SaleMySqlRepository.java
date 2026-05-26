@@ -6,8 +6,10 @@ import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Entity.SaleEntity;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Mapper.SaleMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +55,21 @@ public class SaleMySqlRepository implements SaleRepository {
     @Override
     public List<SaleHistoryDTO> getSaleHistory() {
         return springRepository.getSaleHistory();
+    }
+
+    @Override
+    public Long countSalesByUser(Long userId) {
+        return springRepository.countByUser_UserId(userId);
+    }
+
+    @Override
+    public BigDecimal getTotalSpentByUser(Long userId) {
+        BigDecimal result = springRepository.getTotalSpentByUser(userId);
+        return result != null ? result : BigDecimal.ZERO;
+    }
+
+    @Override
+    public List<SaleHistoryDTO> getRecentPurchasesByUser(Long userId) {
+        return springRepository.getRecentPurchasesByUser(userId, PageRequest.of(0, 5));
     }
 }

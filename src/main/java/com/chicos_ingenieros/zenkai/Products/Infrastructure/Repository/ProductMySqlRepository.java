@@ -62,4 +62,10 @@ public class ProductMySqlRepository implements ProductRepository {
     public List<ProductDTO> findByCategory(Long categoryId) {
         return repository.findByCategory_CategoryId(categoryId);
     }
+
+    @Override
+    public ProductDTO findProductDTOById(Long id) {
+        return repository.findProductDTOById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product with id " + id + " not found"));
+    }
 }

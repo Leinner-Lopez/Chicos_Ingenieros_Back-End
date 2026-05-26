@@ -3,6 +3,7 @@ package com.chicos_ingenieros.zenkai.Lots.Infrastructure.Repository;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
 import com.chicos_ingenieros.zenkai.Lots.Infrastructure.Entity.LotEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -36,4 +37,9 @@ public interface SpringLotRepository extends JpaRepository<LotEntity, Long> {
             @Param("inicioMes") LocalDate inicioMes,
             @Param("finMes") LocalDate finMes
     );
+
+    @Modifying(clearAutomatically = true)
+    @Query("UPDATE LotEntity l SET l.status = 'EXPIRED' " +
+            "WHERE l.expirationDate < :today AND l.status NOT IN ('EXPIRED', 'EMPTY')")
+    int markAsExpired(@Param("today") LocalDate today);
 }
