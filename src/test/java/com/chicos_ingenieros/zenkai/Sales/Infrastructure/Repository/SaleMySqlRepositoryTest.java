@@ -9,11 +9,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageRequest;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -119,7 +122,6 @@ class SaleMySqlRepositoryTest {
 
     @Test
     void getSaleHistory_ShouldReturnHistoryDtoList() {
-
         SaleHistoryDTO dto1 = mock(SaleHistoryDTO.class);
         SaleHistoryDTO dto2 = mock(SaleHistoryDTO.class);
         List<SaleHistoryDTO> expectedHistory = List.of(dto1, dto2);
@@ -132,5 +134,52 @@ class SaleMySqlRepositoryTest {
         assertEquals(2, actualHistory.size());
         assertEquals(expectedHistory, actualHistory);
         verify(springRepository, times(1)).getSaleHistory();
+    }
+
+    @Test
+    void countSalesByUser_ShouldReturnCount() {
+        Long userId = 2L;
+        when(springRepository.countByUser_UserId(userId)).thenReturn(5L);
+
+        Long actual = saleMySqlRepository.countSalesByUser(userId);
+
+        assertEquals(5L, actual);
+        verify(springRepository, times(1)).countByUser_UserId(userId);
+    }
+
+    @Test
+    void getTotalSpentByUser_ShouldReturnTotal_WhenNotNull() {
+        Long userId = 2L;
+        BigDecimal expected = new BigDecimal("75000.00");
+        when(springRepository.getTotalSpentByUser(userId)).thenReturn(expected);
+
+        BigDecimal actual = saleMySqlRepository.getTotalSpentByUser(userId);
+
+        assertEquals(expected, actual);
+        verify(springRepository, times(1)).getTotalSpentByUser(userId);
+    }
+
+    @Test
+    void getTotalSpentByUser_ShouldReturnZero_WhenRepositoryReturnsNull() {
+        Long userId = 2L;
+        when(springRepository.getTotalSpentByUser(userId)).thenReturn(null);
+
+        BigDecimal actual = saleMySqlRepository.getTotalSpentByUser(userId);
+
+        assertEquals(BigDecimal.ZERO, actual);
+    }
+
+    @Test
+    void getRecentPurchasesByUser_ShouldReturnTopFivePurchases() {
+        Long userId = 2L;
+        SaleHistoryDTO dto = mock(SaleHistoryDTO.class);
+        List<SaleHistoryDTO> expected = List.of(dto);
+        when(springRepository.getRecentPurchasesByUser(eq(userId), eq(PageRequest.of(0, 5))))
+                .thenReturn(expected);
+
+        List<SaleHistoryDTO> actual = saleMySqlRepository.getRecentPurchasesByUser(userId);
+
+        assertEquals(expected, actual);
+        verify(springRepository, times(1)).getRecentPurchasesByUser(userId, PageRequest.of(0, 5));
     }
 }

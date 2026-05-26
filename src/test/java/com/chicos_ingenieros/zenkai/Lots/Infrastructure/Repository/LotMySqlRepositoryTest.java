@@ -180,4 +180,14 @@ class LotMySqlRepositoryTest {
         assertEquals(expectedCost, actualCost);
         verify(repository, times(1)).calculateCostOfShrinksOfTheMonth(LotStatus.EXPIRED, monthStart, monthFinish);
     }
+
+    @Test
+    void updateLotStatuses_ShouldCallMarkAsExpiredWithGivenDate() {
+        LocalDate today = LocalDate.now();
+        when(repository.markAsExpired(today)).thenReturn(3);
+
+        lotMySqlRepository.updateLotStatuses(today);
+
+        verify(repository, times(1)).markAsExpired(today);
+    }
 }

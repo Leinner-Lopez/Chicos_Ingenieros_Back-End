@@ -5,6 +5,8 @@ import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotRepository;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
+import com.chicos_ingenieros.zenkai.Products.Application.ProductService;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetail;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetailRepository;
 import com.chicos_ingenieros.zenkai.Sales.Domain.Sale;
@@ -33,10 +35,10 @@ import static org.mockito.Mockito.*;
 class SaleServiceTest {
 
     @Mock private SaleRepository saleRepository;
-    @Mock
-    private SaleDetailRepository saleDetailRepository;
+    @Mock private SaleDetailRepository saleDetailRepository;
     @Mock private LotRepository lotRepository;
     @Mock private SaleMapper saleMapper;
+    @Mock private ProductService productService;
 
     @InjectMocks
     private SaleService service;
@@ -75,6 +77,8 @@ class SaleServiceTest {
         // Compra de 10 unidades, lotA tiene 30 → solo se usa lotA
         SaleItemRequest request = new SaleItemRequest(10L, 10, 5L);
 
+        when(productService.findProductDTOById(10L))
+                .thenReturn(new ProductDTO(10L, "Producto", "Cat", new BigDecimal("3500.00"), null, null, 30L));
         when(lotRepository.findAvailableLotsByProductOrderedByExpiration(10L))
                 .thenReturn(List.of(lotA));
         when(lotRepository.save(any(Lot.class))).thenReturn(lotA);
@@ -97,6 +101,8 @@ class SaleServiceTest {
         // Compra de 40 unidades: lotA(30) se agota, lotB(20) aporta los 10 restantes
         SaleItemRequest request = new SaleItemRequest(10L, 40, 5L);
 
+        when(productService.findProductDTOById(10L))
+                .thenReturn(new ProductDTO(10L, "Producto", "Cat", new BigDecimal("3500.00"), null, null, 50L));
         when(lotRepository.findAvailableLotsByProductOrderedByExpiration(10L))
                 .thenReturn(List.of(lotA, lotB));
         when(lotRepository.save(any(Lot.class))).thenAnswer(inv -> inv.getArgument(0));
@@ -117,6 +123,8 @@ class SaleServiceTest {
     void createSale_noLots_throwsResourceNotFoundException() {
         SaleItemRequest request = new SaleItemRequest(10L, 5, 5L);
 
+        when(productService.findProductDTOById(10L))
+                .thenReturn(new ProductDTO(10L, "Producto", "Cat", new BigDecimal("3500.00"), null, null, 100L));
         when(lotRepository.findAvailableLotsByProductOrderedByExpiration(10L))
                 .thenReturn(List.of());
 
@@ -129,9 +137,8 @@ class SaleServiceTest {
         // Solo hay 30 unidades en total pero se piden 50
         SaleItemRequest request = new SaleItemRequest(10L, 50, 5L);
 
-        when(lotRepository.findAvailableLotsByProductOrderedByExpiration(10L))
-                .thenReturn(List.of(lotA)); // lotA solo tiene 30
-        when(lotRepository.save(any(Lot.class))).thenReturn(lotA);
+        when(productService.findProductDTOById(10L))
+                .thenReturn(new ProductDTO(10L, "Producto", "Cat", new BigDecimal("3500.00"), null, null, 30L));
 
         assertThrows(IlegalActionException.class, () -> service.createSale(request));
         verify(saleRepository, never()).save(any());
@@ -214,5 +221,44 @@ class SaleServiceTest {
         when(saleRepository.getSaleHistory()).thenReturn(List.of(saleHistoryDTO));
         List<SaleHistoryDTO> result = service.getSaleHistory();
         assertEquals(List.of(saleHistoryDTO), result);
+    }
+
+    // ─── countSalesByUser ────────────────────────────────────────
+
+    @Test
+    void countSalesByUser_ShouldReturnCount() {
+        when(saleRepository.countSalesByUser(5L)).thenReturn(3L);
+
+        Long result = service.countSalesByUser(5L);
+
+        assertEquals(3L, result);
+        verify(saleRepository, times(1)).countSalesByUser(5L);
+    }
+
+    // ─── getTotalSpentByUser ─────────────────────────────────────
+
+    @Test
+    void getTotalSpentByUser_ShouldReturnTotal() {
+        BigDecimal expected = new BigDecimal("50000.00");
+        when(saleRepository.getTotalSpentByUser(5L)).thenReturn(expected);
+
+        BigDecimal result = service.getTotalSpentByUser(5L);
+
+        assertEquals(expected, result);
+        verify(saleRepository, times(1)).getTotalSpentByUser(5L);
+    }
+
+    // ─── getRecentPurchasesByUser ────────────────────────────────
+
+    @Test
+    void getRecentPurchasesByUser_ShouldReturnList() {
+        SaleHistoryDTO dto = new SaleHistoryDTO(1L, LocalDateTime.now(), "Queso", 1L, 2, new BigDecimal("3500.00"), new BigDecimal("7000.00"));
+        when(saleRepository.getRecentPurchasesByUser(5L)).thenReturn(List.of(dto));
+
+        List<SaleHistoryDTO> result = service.getRecentPurchasesByUser(5L);
+
+        assertEquals(1, result.size());
+        assertEquals(dto, result.getFirst());
+        verify(saleRepository, times(1)).getRecentPurchasesByUser(5L);
     }
 }
