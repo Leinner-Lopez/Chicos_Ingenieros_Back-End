@@ -35,4 +35,13 @@ build/
 ###MAC###
 .DS_Store
 
+##Variables de Entorno
 .env
+
+#Logs
+Logs/backend/*.log
+Logs/backend/history/*.log
+
+CLAUDE.md
+
+.claude

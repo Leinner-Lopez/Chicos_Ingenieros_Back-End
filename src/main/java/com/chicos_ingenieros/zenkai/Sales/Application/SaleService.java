@@ -5,12 +5,16 @@ import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
 import com.chicos_ingenieros.zenkai.Lots.Domain.Lot;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotRepository;
 import com.chicos_ingenieros.zenkai.Lots.Domain.LotStatus;
+import com.chicos_ingenieros.zenkai.Products.Application.ProductService;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetail;
 import com.chicos_ingenieros.zenkai.Sale_Details.Domain.SaleDetailRepository;
 import com.chicos_ingenieros.zenkai.Sales.Application.UseCases.SaleCrudUseCase;
+import com.chicos_ingenieros.zenkai.Sales.Application.UseCases.SaleHistoryUseCase;
 import com.chicos_ingenieros.zenkai.Sales.Application.UseCases.SaleQueryUseCase;
 import com.chicos_ingenieros.zenkai.Sales.Domain.Sale;
 import com.chicos_ingenieros.zenkai.Sales.Domain.SaleRepository;
+import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleHistoryDTO;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleItemRequest;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.DTO.SaleResponse;
 import com.chicos_ingenieros.zenkai.Sales.Infrastructure.Mapper.SaleMapper;
@@ -25,78 +29,72 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class SaleService implements SaleCrudUseCase, SaleQueryUseCase {
+public class SaleService implements SaleCrudUseCase, SaleQueryUseCase, SaleHistoryUseCase {
     private final SaleRepository saleRepository;
     private final SaleDetailRepository saleDetailRepository;
     private final LotRepository lotRepository;
     private final SaleMapper saleMapper;
+    private final ProductService productService;
 
     @Override
     @Transactional
     public Sale createSale(SaleItemRequest request) {
-        int remaining = request.quantity();
-        BigDecimal total = BigDecimal.ZERO;
-        List<SaleDetail> details = new ArrayList<>();
-
-        // FEFO: lotes ordenados por fecha de vencimiento ASC
-        List<Lot> lots = lotRepository
-                .findAvailableLotsByProductOrderedByExpiration(request.productId());
-
+        ProductDTO productDTO = productService.findProductDTOById(request.productId());
+        if (productDTO.totalStock() < request.quantity()) {
+            throw new IlegalActionException("Product not enough stock");
+        }
+        List<Lot> lots = lotRepository.findAvailableLotsByProductOrderedByExpiration(request.productId());
         if (lots.isEmpty()) {
             throw new ResourceNotFoundException("Lots not found for this product");
         }
+        List<SaleDetail> details = applyFefo(lots, request.quantity());
+        Sale savedSale = buildAndSaveSale(request.userId(), computeTotal(details));
+        savedSale.setDetails(persistDetails(savedSale.getSaleId(), details));
+        return savedSale;
+    }
 
+    private List<SaleDetail> applyFefo(List<Lot> lots, int quantity) {
+        int remaining = quantity;
+        List<SaleDetail> details = new ArrayList<>();
         for (Lot lot : lots) {
             if (remaining <= 0) break;
-
             int consumed = Math.min(remaining, lot.getStockQuantity());
-
-            // Descontar stock del lote
             lot.setStockQuantity(lot.getStockQuantity() - consumed);
-            if (lot.getStockQuantity() == 0) {
-                lot.setStatus(LotStatus.EMPTY);
-            }
+            if (lot.getStockQuantity() == 0) lot.setStatus(LotStatus.EMPTY);
             lotRepository.save(lot);
-
-            SaleDetail detail = SaleDetail.builder()
+            details.add(SaleDetail.builder()
                     .lotId(lot.getLotId())
                     .quantity(consumed)
                     .unitPrice(lot.getProductPrice())
-                    .build();
-            details.add(detail);
-
-            total = total.add(lot.getProductPrice()
-                    .multiply(BigDecimal.valueOf(consumed)));
-
+                    .build());
             remaining -= consumed;
         }
+        return details;
+    }
 
-        if (remaining > 0) {
-            throw new IlegalActionException("Insufficient stock for this product");
-        }
+    private BigDecimal computeTotal(List<SaleDetail> details) {
+        return details.stream()
+                .map(d -> d.getUnitPrice().multiply(BigDecimal.valueOf(d.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
-        // Guardar venta
-        Sale sale = Sale.builder()
-                .userId(request.userId())
+    private Sale buildAndSaveSale(Long userId, BigDecimal total) {
+        return saleRepository.save(Sale.builder()
+                .userId(userId)
                 .saleDate(LocalDateTime.now())
                 .totalPrice(total)
-                .build();
-        Sale savedSale = saleRepository.save(sale);
+                .build());
+    }
 
-        // Guardar detalles vinculados a la venta
-        List<SaleDetail> savedDetails = details.stream()
-                .map(d -> saleDetailRepository.save(
-                        SaleDetail.builder()
-                                .saleId(savedSale.getSaleId())
-                                .lotId(d.getLotId())
-                                .quantity(d.getQuantity())
-                                .unitPrice(d.getUnitPrice())
-                                .build()
-                ))
+    private List<SaleDetail> persistDetails(Long saleId, List<SaleDetail> details) {
+        return details.stream()
+                .map(d -> saleDetailRepository.save(SaleDetail.builder()
+                        .saleId(saleId)
+                        .lotId(d.getLotId())
+                        .quantity(d.getQuantity())
+                        .unitPrice(d.getUnitPrice())
+                        .build()))
                 .toList();
-
-        savedSale.setDetails(savedDetails);
-        return savedSale;
     }
 
     @Override
@@ -132,5 +130,25 @@ public class SaleService implements SaleCrudUseCase, SaleQueryUseCase {
 
         saleDetailRepository.deleteBySaleId(saleId);
         saleRepository.deleteById(saleId);
+    }
+
+    @Override
+    public List<SaleHistoryDTO> getSaleHistory() {
+        return saleRepository.getSaleHistory();
+    }
+
+    @Override
+    public Long countSalesByUser(Long userId) {
+        return saleRepository.countSalesByUser(userId);
+    }
+
+    @Override
+    public BigDecimal getTotalSpentByUser(Long userId) {
+        return saleRepository.getTotalSpentByUser(userId);
+    }
+
+    @Override
+    public List<SaleHistoryDTO> getRecentPurchasesByUser(Long userId) {
+        return saleRepository.getRecentPurchasesByUser(userId);
     }
 }

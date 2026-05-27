@@ -3,11 +3,16 @@ package com.chicos_ingenieros.zenkai.Products.Infrastructure;
 import com.chicos_ingenieros.zenkai.Products.Application.ProductService;
 import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductDTO;
+import com.chicos_ingenieros.zenkai.Products.Infrastructure.DTO.ProductInventoryDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -17,9 +22,12 @@ public class ProductController {
 
     private final ProductService service;
 
-    @PostMapping
-    public ResponseEntity<Product> save(@RequestBody Product product) {
-        Product saved = service.saveProduct(product);
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Product> save(
+            @RequestPart("data") @Valid Product product,
+            @RequestPart("image") MultipartFile image) throws IOException {
+
+        Product saved = service.saveProduct(product, image);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
@@ -27,6 +35,11 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getAll() {
         List<ProductDTO> productList = service.findAllProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
+    }
+
+    @GetMapping("/inventory")
+    public  ResponseEntity<List<ProductInventoryDTO>> getInventory() {
+        return new ResponseEntity<>(service.findGeneralInventory(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -40,6 +53,12 @@ public class ProductController {
     {
         Long count = service.countProducts();
         return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<ProductDTO>> getProductsInCategory(@PathVariable("categoryId") Long categoryId) {
+        List<ProductDTO> productList = service.findByCategory(categoryId);
+        return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
     @PutMapping
