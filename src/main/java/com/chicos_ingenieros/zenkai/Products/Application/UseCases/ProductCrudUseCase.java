@@ -11,7 +11,7 @@ public interface ProductCrudUseCase {
     Product saveProduct(Product product, MultipartFile image) throws IOException;
     Product findProductById(Long id);
     List<ProductDTO> findAllProducts();
-    Product updateProduct(Long id, Product product);
+    Product updateProduct(Long id, Product product, MultipartFile image) throws IOException;
     void deleteProductById(Long id);
     ProductDTO findProductDTOById(Long id);
 }

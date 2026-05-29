@@ -133,21 +133,43 @@ class ProductServiceTest {
     }
 
     @Test
-    @DisplayName("Debería actualizar los campos de un producto existente correctamente")
-    void updateProductSuccessfully() {
+    @DisplayName("Debería actualizar los campos de un producto existente sin cambiar la imagen")
+    void updateProductSuccessfully() throws IOException {
         // Arrange
         Long id = 1L;
         when(repository.findById(id)).thenReturn(savedProduct);
         when(repository.save(any(Product.class))).thenReturn(editProduct);
 
         // Act
-        Product result = service.updateProduct(id, editProduct);
+        Product result = service.updateProduct(id, editProduct, null);
 
         // Assert
         assertNotNull(result);
         assertEquals("Queso", result.getName());
         assertEquals(new BigDecimal("4500.00"), result.getPrice());
         verify(repository, times(1)).findById(id);
+        verify(repository, times(1)).save(savedProduct);
+        verify(cloudinaryService, never()).uploadImage(any());
+    }
+
+    @Test
+    @DisplayName("Debería actualizar el producto y subir la nueva imagen a Cloudinary")
+    void updateProductWithImageSuccessfully() throws IOException {
+        // Arrange
+        Long id = 1L;
+        MultipartFile image = mock(MultipartFile.class);
+        String newUrl = "https://res.cloudinary.com/fake/new-image.jpg";
+        when(image.isEmpty()).thenReturn(false);
+        when(repository.findById(id)).thenReturn(savedProduct);
+        when(cloudinaryService.uploadImage(image)).thenReturn(newUrl);
+        when(repository.save(any(Product.class))).thenReturn(editProduct);
+
+        // Act
+        Product result = service.updateProduct(id, editProduct, image);
+
+        // Assert
+        assertNotNull(result);
+        verify(cloudinaryService, times(1)).uploadImage(image);
         verify(repository, times(1)).save(savedProduct);
     }
 

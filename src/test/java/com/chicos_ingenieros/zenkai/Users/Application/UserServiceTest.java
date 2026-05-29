@@ -209,4 +209,76 @@ class UserServiceTest {
 
         assertEquals(5L, result);
     }
+
+    // ─── findUsersByStatus ───────────────────────────────────────────────────────
+
+    @Test
+    void findUsersByStatus_active_returnsOnlyActiveUsers() {
+        when(repository.findByStatus(UserStatus.ACTIVE)).thenReturn(List.of(savedUser));
+
+        List<UserDTO> result = service.findUsersByStatus(UserStatus.ACTIVE);
+
+        assertEquals(1, result.size());
+        assertEquals("Carlos", result.getFirst().firstName());
+        verify(repository, times(1)).findByStatus(UserStatus.ACTIVE);
+    }
+
+    @Test
+    void findUsersByStatus_inactive_returnsEmptyList() {
+        when(repository.findByStatus(UserStatus.INACTIVE)).thenReturn(List.of());
+
+        List<UserDTO> result = service.findUsersByStatus(UserStatus.INACTIVE);
+
+        assertTrue(result.isEmpty());
+        verify(repository, times(1)).findByStatus(UserStatus.INACTIVE);
+    }
+
+    // ─── countUsersByStatus ──────────────────────────────────────────────────────
+
+    @Test
+    void countUsersByStatus_returnsCorrectCount() {
+        when(repository.countByStatus(UserStatus.ACTIVE)).thenReturn(3L);
+
+        Long result = service.countUsersByStatus(UserStatus.ACTIVE);
+
+        assertEquals(3L, result);
+        verify(repository, times(1)).countByStatus(UserStatus.ACTIVE);
+    }
+
+    // ─── toggleUserStatus ────────────────────────────────────────────────────────
+
+    @Test
+    void toggleUserStatus_activeToInactive() {
+        when(repository.findById(1L)).thenReturn(savedUser);
+        when(repository.save(savedUser)).thenReturn(savedUser);
+
+        service.toggleUserStatus(1L);
+
+        assertEquals(UserStatus.INACTIVE, savedUser.getStatus());
+        verify(repository, times(1)).save(savedUser);
+    }
+
+    @Test
+    void toggleUserStatus_inactiveToActive() {
+        User inactiveUser = User.builder()
+                .userId(2L).firstName("Ana").lastName("Gómez")
+                .email("ana@zenkai.com").role(Role.CUSTOMER)
+                .status(UserStatus.INACTIVE).build();
+
+        when(repository.findById(2L)).thenReturn(inactiveUser);
+        when(repository.save(inactiveUser)).thenReturn(inactiveUser);
+
+        service.toggleUserStatus(2L);
+
+        assertEquals(UserStatus.ACTIVE, inactiveUser.getStatus());
+        verify(repository, times(1)).save(inactiveUser);
+    }
+
+    @Test
+    void toggleUserStatus_notFound_throwsException() {
+        when(repository.findById(99L)).thenReturn(null);
+
+        assertThrows(ResourceNotFoundException.class, () -> service.toggleUserStatus(99L));
+        verify(repository, never()).save(any());
+    }
 }

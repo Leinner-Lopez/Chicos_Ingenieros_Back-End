@@ -65,7 +65,7 @@ class UserControllerTest {
                 .status(UserStatus.ACTIVE)
                 .build();
 
-        userDTOSample = new UserDTO(1L, "Juan", "Pérez", "juan@test.com", Role.CUSTOMER);
+        userDTOSample = new UserDTO(1L, "Juan", "Pérez", "juan@test.com", Role.CUSTOMER, UserStatus.ACTIVE);
     }
 
     // ─── POST /api/users ────────────────────────────────────────────────────────
@@ -264,5 +264,79 @@ class UserControllerTest {
                 .andExpect(status().isNotFound());
 
         verify(userService, times(1)).deleteUserById(99L);
+    }
+
+    // ─── GET /api/users/status/{status} ─────────────────────────────────────────
+
+    @Test
+    @DisplayName("GET /api/users/status/ACTIVE - Debería retornar solo usuarios activos y 200 OK")
+    void getUsersByStatus_ShouldReturnActiveUsers() throws Exception {
+        when(userService.findUsersByStatus(UserStatus.ACTIVE)).thenReturn(List.of(userDTOSample));
+
+        mockMvc.perform(get("/api/users/status/{status}", UserStatus.ACTIVE))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(1))
+                .andExpect(jsonPath("$[0].userId").value(1L))
+                .andExpect(jsonPath("$[0].firstName").value("Juan"));
+
+        verify(userService, times(1)).findUsersByStatus(UserStatus.ACTIVE);
+    }
+
+    @Test
+    @DisplayName("GET /api/users/status/INACTIVE - Debería retornar lista vacía cuando no hay inactivos")
+    void getUsersByStatus_ShouldReturnEmptyWhenNoInactive() throws Exception {
+        when(userService.findUsersByStatus(UserStatus.INACTIVE)).thenReturn(List.of());
+
+        mockMvc.perform(get("/api/users/status/{status}", UserStatus.INACTIVE))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(0));
+
+        verify(userService, times(1)).findUsersByStatus(UserStatus.INACTIVE);
+    }
+
+    // ─── GET /api/users/count/status/{status} ───────────────────────────────────
+
+    @Test
+    @DisplayName("GET /api/users/count/status/ACTIVE - Debería retornar el total de usuarios activos y 200 OK")
+    void countUsersByStatus_ShouldReturnCount() throws Exception {
+        when(userService.countUsersByStatus(UserStatus.ACTIVE)).thenReturn(8L);
+
+        mockMvc.perform(get("/api/users/count/status/{status}", UserStatus.ACTIVE))
+                .andExpect(status().isOk())
+                .andExpect(content().string("8"));
+
+        verify(userService, times(1)).countUsersByStatus(UserStatus.ACTIVE);
+    }
+
+    // ─── PATCH /api/users/{id}/toggle-status ────────────────────────────────────
+
+    @Test
+    @DisplayName("PATCH /api/users/{id}/toggle-status - Debería cambiar el estado y retornar 200 OK")
+    void toggleStatus_ShouldReturnUpdatedUser() throws Exception {
+        User inactiveUser = User.builder()
+                .userId(1L).firstName("Juan").lastName("Pérez")
+                .email("juan@test.com").role(Role.CUSTOMER)
+                .status(UserStatus.INACTIVE).build();
+
+        when(userService.toggleUserStatus(1L)).thenReturn(inactiveUser);
+
+        mockMvc.perform(patch("/api/users/{id}/toggle-status", 1L))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userId").value(1L))
+                .andExpect(jsonPath("$.status").value("INACTIVE"));
+
+        verify(userService, times(1)).toggleUserStatus(1L);
+    }
+
+    @Test
+    @DisplayName("PATCH /api/users/{id}/toggle-status - Debería retornar 404 cuando el usuario no existe")
+    void toggleStatus_ShouldReturn404WhenNotFound() throws Exception {
+        when(userService.toggleUserStatus(99L))
+                .thenThrow(new ResourceNotFoundException("User with id 99 not found"));
+
+        mockMvc.perform(patch("/api/users/{id}/toggle-status", 99L))
+                .andExpect(status().isNotFound());
+
+        verify(userService, times(1)).toggleUserStatus(99L);
     }
 }

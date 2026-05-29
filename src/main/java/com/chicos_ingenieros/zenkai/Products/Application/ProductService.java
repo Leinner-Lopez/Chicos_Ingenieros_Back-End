@@ -45,13 +45,16 @@ public class ProductService implements ProductCrudUseCase, ProductCountUseCase, 
     }
 
     @Override
-    public Product updateProduct(Long id, Product product) {
+    public Product updateProduct(Long id, Product product, MultipartFile image) throws IOException {
         Product productDb = repository.findById(id);
         productDb.setName(product.getName());
         productDb.setPrice(product.getPrice());
         productDb.setDescription(product.getDescription());
         productDb.setMinStock(product.getMinStock());
         productDb.setCategoryId(product.getCategoryId());
+        if (image != null && !image.isEmpty()) {
+            productDb.setImageUrl(cloudinaryService.uploadImage(image));
+        }
         return repository.save(productDb);
     }
 

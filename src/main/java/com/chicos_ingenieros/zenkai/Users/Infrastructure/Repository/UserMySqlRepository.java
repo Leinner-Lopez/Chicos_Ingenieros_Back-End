@@ -2,6 +2,7 @@ package com.chicos_ingenieros.zenkai.Users.Infrastructure.Repository;
 
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
 import com.chicos_ingenieros.zenkai.Users.Domain.UserRepository;
+import com.chicos_ingenieros.zenkai.Users.Domain.UserStatus;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Entity.UserEntity;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,16 @@ public class UserMySqlRepository implements UserRepository {
     @Override
     public List<User> findAll() {
         return repository.findAll().stream().map(mapper::userEntityToUser).toList();
+    }
+
+    @Override
+    public List<User> findByStatus(UserStatus status) {
+        return repository.findByStatus(status).stream().map(mapper::userEntityToUser).toList();
+    }
+
+    @Override
+    public Long countByStatus(UserStatus status) {
+        return repository.countByStatus(status);
     }
 
     @Override

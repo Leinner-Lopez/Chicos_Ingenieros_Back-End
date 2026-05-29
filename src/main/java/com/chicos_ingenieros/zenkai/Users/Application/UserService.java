@@ -62,6 +62,28 @@ public class UserService implements UserCrudUseCase, UserCountUseCase {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<UserDTO> findUsersByStatus(UserStatus status) {
+        return repository.findByStatus(status)
+                .stream()
+                .map(mapper::userToUserDTO)
+                .toList();
+    }
+
+    @Override
+    public Long countUsersByStatus(UserStatus status) {
+        return repository.countByStatus(status);
+    }
+
+    @Override
+    public User toggleUserStatus(Long id) {
+        User user = repository.findById(id);
+        if (user == null) throw new ResourceNotFoundException("User with id " + id + " not found");
+        user.setStatus(user.getStatus() == UserStatus.ACTIVE ? UserStatus.INACTIVE : UserStatus.ACTIVE);
+        return repository.save(user);
+    }
+
     @Override
     public User updateUser(Long id, User user) {
         User userDb = repository.findById(id);

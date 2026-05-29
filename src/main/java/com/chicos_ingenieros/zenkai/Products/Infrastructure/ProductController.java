@@ -61,9 +61,11 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Product> update(@RequestBody Product product) {
-        Product productDB = service.updateProduct(product.getProductId(), product);
+    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Product> update(
+            @RequestPart("data") Product product,
+            @RequestPart(value = "image", required = false) MultipartFile image) throws IOException {
+        Product productDB = service.updateProduct(product.getProductId(), product, image);
         return new ResponseEntity<>(productDB, HttpStatus.OK);
     }
 

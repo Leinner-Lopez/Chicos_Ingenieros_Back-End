@@ -15,6 +15,10 @@ public interface UserRepository {
 
     List<User> findAll();
 
+    List<User> findByStatus(UserStatus status);
+
+    Long countByStatus(UserStatus status);
+
     void deleteById(Long id);
 
     Long countUsers();

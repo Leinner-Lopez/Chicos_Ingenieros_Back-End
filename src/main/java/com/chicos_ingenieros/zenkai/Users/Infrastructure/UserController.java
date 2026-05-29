@@ -1,8 +1,8 @@
 package com.chicos_ingenieros.zenkai.Users.Infrastructure;
 
-import com.chicos_ingenieros.zenkai.Products.Domain.Product;
 import com.chicos_ingenieros.zenkai.Users.Application.UserService;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
+import com.chicos_ingenieros.zenkai.Users.Domain.UserStatus;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.DTO.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,6 +46,21 @@ public class UserController {
     public ResponseEntity<Long> countUsers() {
         Long count = service.countUsers();
         return new ResponseEntity<>(count, HttpStatus.OK);
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<UserDTO>> getUsersByStatus(@PathVariable UserStatus status) {
+        return new ResponseEntity<>(service.findUsersByStatus(status), HttpStatus.OK);
+    }
+
+    @GetMapping("/count/status/{status}")
+    public ResponseEntity<Long> countUsersByStatus(@PathVariable UserStatus status) {
+        return new ResponseEntity<>(service.countUsersByStatus(status), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}/toggle-status")
+    public ResponseEntity<User> toggleStatus(@PathVariable Long id) {
+        return new ResponseEntity<>(service.toggleUserStatus(id), HttpStatus.OK);
     }
 
     @PutMapping

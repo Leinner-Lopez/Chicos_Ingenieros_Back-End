@@ -21,8 +21,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.http.HttpMethod;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -192,21 +195,59 @@ class ProductControllerTest {
     }
 
     @Test
-    @DisplayName("PUT /api/products - Debería actualizar un producto y retornar el resultado con 200 OK")
+    @DisplayName("PUT /api/products - Debería actualizar un producto sin imagen y retornar 200 OK")
     void updateShouldReturnUpdatedProduct() throws Exception {
         // Arrange
-        when(productService.updateProduct(eq(1L), any(Product.class))).thenReturn(productSample);
+        MockMultipartFile dataJson = new MockMultipartFile(
+                "data",
+                "",
+                MediaType.APPLICATION_JSON_VALUE,
+                objectMapper.writeValueAsBytes(productSample)
+        );
+
+        when(productService.updateProduct(eq(1L), any(Product.class), isNull())).thenReturn(productSample);
 
         // Act & Assert
-        mockMvc.perform(put("/api/products")
-                        .with(csrf())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productSample)))
+        mockMvc.perform(multipart(HttpMethod.PUT, "/api/products")
+                        .file(dataJson)
+                        .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.productId").value(1))
                 .andExpect(jsonPath("$.name").value("Producto de Prueba"));
 
-        verify(productService, times(1)).updateProduct(eq(1L), any(Product.class));
+        verify(productService, times(1)).updateProduct(eq(1L), any(Product.class), isNull());
+    }
+
+    @Test
+    @DisplayName("PUT /api/products - Debería actualizar un producto con nueva imagen y retornar 200 OK")
+    void updateWithImageShouldReturnUpdatedProduct() throws Exception {
+        // Arrange
+        MockMultipartFile dataJson = new MockMultipartFile(
+                "data",
+                "",
+                MediaType.APPLICATION_JSON_VALUE,
+                objectMapper.writeValueAsBytes(productSample)
+        );
+
+        MockMultipartFile imageFile = new MockMultipartFile(
+                "image",
+                "nueva-imagen.jpg",
+                MediaType.IMAGE_JPEG_VALUE,
+                "contenido-imagen".getBytes()
+        );
+
+        when(productService.updateProduct(eq(1L), any(Product.class), any())).thenReturn(productSample);
+
+        // Act & Assert
+        mockMvc.perform(multipart(HttpMethod.PUT, "/api/products")
+                        .file(dataJson)
+                        .file(imageFile)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.productId").value(1))
+                .andExpect(jsonPath("$.name").value("Producto de Prueba"));
+
+        verify(productService, times(1)).updateProduct(eq(1L), any(Product.class), any());
     }
 
     @Test

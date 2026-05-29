@@ -12,6 +12,5 @@ public interface UserDTOMapper {
     @Mapping(target = "documentNumber", ignore = true)
     @Mapping(target = "phoneNumber", ignore = true)
     @Mapping(target = "password", ignore = true)
-    @Mapping(target = "status", ignore = true)
     User UserDTOToUser(UserDTO userDTO);
 }
