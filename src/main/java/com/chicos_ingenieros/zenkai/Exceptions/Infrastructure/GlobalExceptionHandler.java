@@ -1,9 +1,9 @@
 package com.chicos_ingenieros.zenkai.Exceptions.Infrastructure;
 
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ErrorDetails;
-import com.chicos_ingenieros.zenkai.Exceptions.Domain.IlegalActionException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceDuplicateException;
 import com.chicos_ingenieros.zenkai.Exceptions.Domain.ResourceNotFoundException;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.IlegalActionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

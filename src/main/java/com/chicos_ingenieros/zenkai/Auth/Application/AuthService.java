@@ -4,6 +4,7 @@ import com.chicos_ingenieros.zenkai.Auth.Infrastructure.AuthResponse;
 import com.chicos_ingenieros.zenkai.Auth.Infrastructure.LoginRequest;
 import com.chicos_ingenieros.zenkai.Auth.Infrastructure.RegisterRequest;
 import com.chicos_ingenieros.zenkai.Config.Application.JwtService;
+import com.chicos_ingenieros.zenkai.Exceptions.Domain.IlegalActionException;
 import com.chicos_ingenieros.zenkai.Users.Application.UserService;
 import com.chicos_ingenieros.zenkai.Users.Domain.Role;
 import com.chicos_ingenieros.zenkai.Users.Domain.User;
@@ -11,6 +12,7 @@ import com.chicos_ingenieros.zenkai.Users.Domain.UserStatus;
 import com.chicos_ingenieros.zenkai.Users.Infrastructure.Mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,7 +29,11 @@ public class AuthService implements LoginUserCase {
 
     @Override
     public AuthResponse login(LoginRequest request){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        } catch (DisabledException ex) {
+            throw new IlegalActionException("User is in status INACTIVE");
+        }
         UserDetails user = userMapper.userToUserEntity(userService.findUserByEmail(request.getUsername()));
         String token = jwtService.getToken(user);
         return AuthResponse.builder().token(token)

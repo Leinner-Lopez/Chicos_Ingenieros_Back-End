@@ -45,3 +45,8 @@ Logs/backend/history/*.log
 CLAUDE.md
 
 .claude
+.graphify-out
+.docs
+/graphify-out/
+/graphify-out/
+/docs/

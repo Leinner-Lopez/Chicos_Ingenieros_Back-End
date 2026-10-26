@@ -40,8 +40,6 @@ class AuthServiceTest {
     @InjectMocks
     private AuthService service;
 
-    // ─── Fixtures ────────────────────────────────────────────────
-
     User domainUser = User.builder()
             .userId(1L)
             .firstName("Carlos").lastName("Pérez")

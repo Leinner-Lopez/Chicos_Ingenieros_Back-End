@@ -8,5 +8,5 @@ import lombok.EqualsAndHashCode;
 @Data
 @AllArgsConstructor
 public class IlegalActionException extends RuntimeException{
-    String message;
+    private String message;
 }

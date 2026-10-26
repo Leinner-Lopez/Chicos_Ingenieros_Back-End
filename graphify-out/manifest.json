@@ -1,0 +1,752 @@
+{
+  "mvnw": {
+    "mtime": 1776648383.9957414,
+    "seen": 1789693853.649854,
+    "ast_hash": "ab50dd89da7da2346b28003352eeeeeb",
+    "semantic_hash": "ab50dd89da7da2346b28003352eeeeeb"
+  },
+  "pom.xml": {
+    "mtime": 1779925702.9370394,
+    "seen": 1789693853.6498592,
+    "ast_hash": "e156686025c6bfc5b8f8bbd4a131016a",
+    "semantic_hash": "e156686025c6bfc5b8f8bbd4a131016a"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Auth/Application/AuthService.java": {
+    "mtime": 1778771457.757605,
+    "seen": 1789693853.649861,
+    "ast_hash": "c58656e71fae5604dd4359af3b9dbb11",
+    "semantic_hash": "c58656e71fae5604dd4359af3b9dbb11"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Auth/Application/LoginUserCase.java": {
+    "mtime": 1778771457.7584229,
+    "seen": 1789693853.6498618,
+    "ast_hash": "aa37e9e3616f361f5d3aa83696855205",
+    "semantic_hash": "aa37e9e3616f361f5d3aa83696855205"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Auth/Infrastructure/AuthController.java": {
+    "mtime": 1776648383.9981446,
+    "seen": 1789693853.649864,
+    "ast_hash": "b2281767ea3095159ae3738d07b80a9d",
+    "semantic_hash": "b2281767ea3095159ae3738d07b80a9d"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Auth/Infrastructure/AuthResponse.java": {
+    "mtime": 1778771457.759196,
+    "seen": 1789693853.649865,
+    "ast_hash": "6fec5be16d11d8e615474eaebb0bd998",
+    "semantic_hash": "6fec5be16d11d8e615474eaebb0bd998"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Auth/Infrastructure/LoginRequest.java": {
+    "mtime": 1776648383.9985712,
+    "seen": 1789693853.6498659,
+    "ast_hash": "48428f12a81fd1ad439b3c8bea9149f5",
+    "semantic_hash": "48428f12a81fd1ad439b3c8bea9149f5"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Auth/Infrastructure/RegisterRequest.java": {
+    "mtime": 1778771457.7600558,
+    "seen": 1789693853.649867,
+    "ast_hash": "26cf4444e79296a98b9ad49561166fb6",
+    "semantic_hash": "26cf4444e79296a98b9ad49561166fb6"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Application/CategoryService.java": {
+    "mtime": 1778771457.7609694,
+    "seen": 1789693853.649868,
+    "ast_hash": "1f00ca480fb02ee3935bff4dcffb8573",
+    "semantic_hash": "1f00ca480fb02ee3935bff4dcffb8573"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Application/UseCases/CategoryCountUseCase.java": {
+    "mtime": 1778771457.761827,
+    "seen": 1789693853.649869,
+    "ast_hash": "94e7124d812d3d47dc06922a42766d59",
+    "semantic_hash": "94e7124d812d3d47dc06922a42766d59"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Application/UseCases/CategoryCrudUseCase.java": {
+    "mtime": 1778771457.7624154,
+    "seen": 1789693853.649869,
+    "ast_hash": "2d925b5c0811aee5339f417788b63bb4",
+    "semantic_hash": "2d925b5c0811aee5339f417788b63bb4"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Domain/Category.java": {
+    "mtime": 1778771457.763224,
+    "seen": 1789693853.649871,
+    "ast_hash": "9f061ef9dd5b7ae1e9b4cb183a4e5e7e",
+    "semantic_hash": "9f061ef9dd5b7ae1e9b4cb183a4e5e7e"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Domain/CategoryRepository.java": {
+    "mtime": 1778771457.7639906,
+    "seen": 1789693853.6498718,
+    "ast_hash": "ac454c4ec8ed31cb678f6ae30023332f",
+    "semantic_hash": "ac454c4ec8ed31cb678f6ae30023332f"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/CategoryController.java": {
+    "mtime": 1778771457.7647986,
+    "seen": 1789693853.6498728,
+    "ast_hash": "d60e7901d5aba659f673fc9143ffd4cb",
+    "semantic_hash": "d60e7901d5aba659f673fc9143ffd4cb"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/Entity/CategoryEntity.java": {
+    "mtime": 1778771457.7656958,
+    "seen": 1789693853.649874,
+    "ast_hash": "a52c831a9bf833c1cf98114039b9c450",
+    "semantic_hash": "a52c831a9bf833c1cf98114039b9c450"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/Mapper/CategoryMapper.java": {
+    "mtime": 1778771457.766394,
+    "seen": 1789693853.649874,
+    "ast_hash": "45ef04a334ef202922142b84b191a0e8",
+    "semantic_hash": "45ef04a334ef202922142b84b191a0e8"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/Repository/CategoryMySqlRepository.java": {
+    "mtime": 1778771457.767374,
+    "seen": 1789693853.649875,
+    "ast_hash": "913d194c057772e3428cb687f7420d74",
+    "semantic_hash": "913d194c057772e3428cb687f7420d74"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/Repository/SpringCategoryRepository.java": {
+    "mtime": 1776648384.0012918,
+    "seen": 1789693853.6498759,
+    "ast_hash": "910ac587e72192fce186ddfe8ebe1c64",
+    "semantic_hash": "910ac587e72192fce186ddfe8ebe1c64"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Cloudinary/Application/CloudinaryService.java": {
+    "mtime": 1779925702.93884,
+    "seen": 1789693853.649877,
+    "ast_hash": "a1a538e526d81e72c2c7f743e3672597",
+    "semantic_hash": "a1a538e526d81e72c2c7f743e3672597"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Cloudinary/Application/UseCases/CloudinaryUploadImageUseCase.java": {
+    "mtime": 1779925702.939801,
+    "seen": 1789693853.649878,
+    "ast_hash": "e6d7084a44aa0c1f499187044c426341",
+    "semantic_hash": "e6d7084a44aa0c1f499187044c426341"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Cloudinary/Config/CloudinaryConfig.java": {
+    "mtime": 1779925702.940696,
+    "seen": 1789693853.649879,
+    "ast_hash": "2f7a369dedd411ad16c734012d532d37",
+    "semantic_hash": "2f7a369dedd411ad16c734012d532d37"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Config/Application/JwtService.java": {
+    "mtime": 1779925702.9413128,
+    "seen": 1789693853.6498802,
+    "ast_hash": "2f6a1345710af33dd3c3b5b9f2dffeff",
+    "semantic_hash": "2f6a1345710af33dd3c3b5b9f2dffeff"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Config/Infrastructure/ApplicationConfig.java": {
+    "mtime": 1779925702.942526,
+    "seen": 1789693853.6498811,
+    "ast_hash": "b1444d3b210a8feb751fd7380b07bae6",
+    "semantic_hash": "b1444d3b210a8feb751fd7380b07bae6"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Config/Infrastructure/CorsConfig.java": {
+    "mtime": 1780044486.9185205,
+    "seen": 1789693853.649882,
+    "ast_hash": "b280843a7469391c51f07a8263929807",
+    "semantic_hash": "b280843a7469391c51f07a8263929807"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Config/Infrastructure/Filter/JwtAuthFilter.java": {
+    "mtime": 1776648384.0026803,
+    "seen": 1789693853.6498828,
+    "ast_hash": "f0f9156b141c7921dbf5fd9420917ccd",
+    "semantic_hash": "f0f9156b141c7921dbf5fd9420917ccd"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Config/Infrastructure/SecurityConfig.java": {
+    "mtime": 1778217447.5247986,
+    "seen": 1789693853.649884,
+    "ast_hash": "e29a896ef2d5d87316d1444b3b2ddb7f",
+    "semantic_hash": "e29a896ef2d5d87316d1444b3b2ddb7f"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Dashboard/DashboardAdminController.java": {
+    "mtime": 1779925702.943419,
+    "seen": 1789693853.649885,
+    "ast_hash": "6828d0e29c3e1e1ae3ccba3ca29cb4bf",
+    "semantic_hash": "6828d0e29c3e1e1ae3ccba3ca29cb4bf"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Dashboard/DashboardCustomerController.java": {
+    "mtime": 1779925702.9444647,
+    "seen": 1789693853.649886,
+    "ast_hash": "f3446b5b4bec199405cc1aa185759cc9",
+    "semantic_hash": "f3446b5b4bec199405cc1aa185759cc9"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Dashboard/DashboardStoreController.java": {
+    "mtime": 1779925702.9449823,
+    "seen": 1789693853.649887,
+    "ast_hash": "2e8e138eb8ded8a3bde3599d9cced5b2",
+    "semantic_hash": "2e8e138eb8ded8a3bde3599d9cced5b2"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Domain/ErrorDetails.java": {
+    "mtime": 1776648384.003309,
+    "seen": 1789693853.649888,
+    "ast_hash": "f99c86452a39a0b52f1874dbfcb71751",
+    "semantic_hash": "f99c86452a39a0b52f1874dbfcb71751"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Domain/IlegalActionException.java": {
+    "mtime": 1778771457.769866,
+    "seen": 1789693853.649889,
+    "ast_hash": "13bb51d1e54d297e85fa231982054ffa",
+    "semantic_hash": "13bb51d1e54d297e85fa231982054ffa"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Domain/ResourceDuplicateException.java": {
+    "mtime": 1776648384.0035224,
+    "seen": 1789693853.649889,
+    "ast_hash": "1bf77d9716e31134ffb239ee0741148b",
+    "semantic_hash": "1bf77d9716e31134ffb239ee0741148b"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Domain/ResourceNotFoundException.java": {
+    "mtime": 1776648384.0040002,
+    "seen": 1789693853.64989,
+    "ast_hash": "99013cda2ccc1985fd43a5ceb2b520e3",
+    "semantic_hash": "99013cda2ccc1985fd43a5ceb2b520e3"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Infrastructure/GlobalExceptionHandler.java": {
+    "mtime": 1779925702.9462147,
+    "seen": 1789693853.6498911,
+    "ast_hash": "13120a259a437765266488652a7fc871",
+    "semantic_hash": "13120a259a437765266488652a7fc871"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/LotService.java": {
+    "mtime": 1779925702.9466498,
+    "seen": 1789693853.649892,
+    "ast_hash": "b25d4c6322dd295bd9c26da677c6702c",
+    "semantic_hash": "b25d4c6322dd295bd9c26da677c6702c"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/UseCases/DashboardAdminUseCase.java": {
+    "mtime": 1779925702.947495,
+    "seen": 1789693853.649893,
+    "ast_hash": "a3a1d52fc3c75544ca1f6e32dd9a1a6b",
+    "semantic_hash": "a3a1d52fc3c75544ca1f6e32dd9a1a6b"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/UseCases/LotCountUseCase.java": {
+    "mtime": 1778771457.7724793,
+    "seen": 1789693853.649894,
+    "ast_hash": "2cc5d174de589ab424da3bd10c93a628",
+    "semantic_hash": "2cc5d174de589ab424da3bd10c93a628"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/UseCases/LotCrudUseCase.java": {
+    "mtime": 1779925702.9481208,
+    "seen": 1789693853.649895,
+    "ast_hash": "eb61086b7879407a7fda41ce6115230d",
+    "semantic_hash": "eb61086b7879407a7fda41ce6115230d"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/UseCases/LotFeFoUseCase.java": {
+    "mtime": 1778771457.7738304,
+    "seen": 1789693853.649896,
+    "ast_hash": "1ee7e5a823246906b7ebc7c1db215578",
+    "semantic_hash": "1ee7e5a823246906b7ebc7c1db215578"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/UseCases/LotStatusUpdateUseCase.java": {
+    "mtime": 1779925702.9489486,
+    "seen": 1789693853.6498969,
+    "ast_hash": "f38a21156c633f7eb30b30d91729dc06",
+    "semantic_hash": "f38a21156c633f7eb30b30d91729dc06"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Domain/Lot.java": {
+    "mtime": 1778771457.7747502,
+    "seen": 1789693853.649898,
+    "ast_hash": "c3c343c99f47dc01473d188120d24dc9",
+    "semantic_hash": "c3c343c99f47dc01473d188120d24dc9"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Domain/LotRepository.java": {
+    "mtime": 1779925702.9497075,
+    "seen": 1789693853.649899,
+    "ast_hash": "051e4c9f13e1a83edd99eb452aeadc14",
+    "semantic_hash": "051e4c9f13e1a83edd99eb452aeadc14"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Domain/LotStatus.java": {
+    "mtime": 1779925702.9506907,
+    "seen": 1789693853.6499,
+    "ast_hash": "4ccd48bf0b2d5f53ec2d4b5d4f1e69ac",
+    "semantic_hash": "4ccd48bf0b2d5f53ec2d4b5d4f1e69ac"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/DTO/LotDTO.java": {
+    "mtime": 1779925702.9512978,
+    "seen": 1789693853.6499012,
+    "ast_hash": "a31c3fbacdecda1a289a0fe92ea8c9fc",
+    "semantic_hash": "a31c3fbacdecda1a289a0fe92ea8c9fc"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Entity/LotEntity.java": {
+    "mtime": 1778771457.7775004,
+    "seen": 1789693853.649902,
+    "ast_hash": "78fc3594f5ba37b9bddd3dc4c688b404",
+    "semantic_hash": "78fc3594f5ba37b9bddd3dc4c688b404"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/LotController.java": {
+    "mtime": 1779925702.9518948,
+    "seen": 1789693853.649903,
+    "ast_hash": "c0a196785d2b489a7ae93d8f278b81b8",
+    "semantic_hash": "c0a196785d2b489a7ae93d8f278b81b8"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Mapper/LotMapper.java": {
+    "mtime": 1779925702.9530962,
+    "seen": 1789693853.649904,
+    "ast_hash": "8d3ce95ce7cd8607e37e10557556c49a",
+    "semantic_hash": "8d3ce95ce7cd8607e37e10557556c49a"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Repository/LotMySqlRepository.java": {
+    "mtime": 1779925702.9540167,
+    "seen": 1789693853.649905,
+    "ast_hash": "5d7ec442fcb1972e06389f8f845a6918",
+    "semantic_hash": "5d7ec442fcb1972e06389f8f845a6918"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Repository/SpringLotRepository.java": {
+    "mtime": 1779925702.9546456,
+    "seen": 1789693853.649906,
+    "ast_hash": "481a70b16f66812f6ee58f142d49efbd",
+    "semantic_hash": "481a70b16f66812f6ee58f142d49efbd"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Scheduler/LotStatusScheduler.java": {
+    "mtime": 1779925702.9555435,
+    "seen": 1789693853.649906,
+    "ast_hash": "e720797b9d11e8c6096cd57ef31f7369",
+    "semantic_hash": "e720797b9d11e8c6096cd57ef31f7369"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Application/ProductService.java": {
+    "mtime": 1780044486.9207177,
+    "seen": 1789693853.6499069,
+    "ast_hash": "2f7e925eba143517cb907eebf17b9ea6",
+    "semantic_hash": "2f7e925eba143517cb907eebf17b9ea6"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Application/UseCases/DashboardAdminUseCase.java": {
+    "mtime": 1779925702.956633,
+    "seen": 1789693853.649908,
+    "ast_hash": "f990c7b443adbf082624a2a75f34899d",
+    "semantic_hash": "f990c7b443adbf082624a2a75f34899d"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Application/UseCases/InventoryUseCase.java": {
+    "mtime": 1779925702.9571633,
+    "seen": 1789693853.649909,
+    "ast_hash": "d85ab72dd84e1907701f08e3a8d91114",
+    "semantic_hash": "d85ab72dd84e1907701f08e3a8d91114"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Application/UseCases/ProductCountUseCase.java": {
+    "mtime": 1778771457.7829032,
+    "seen": 1789693853.64991,
+    "ast_hash": "636a5ba85e33a816138a20d89b6a2e99",
+    "semantic_hash": "636a5ba85e33a816138a20d89b6a2e99"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Application/UseCases/ProductCrudUseCase.java": {
+    "mtime": 1780044486.9220533,
+    "seen": 1789693853.649911,
+    "ast_hash": "0bdaf4b65b2c9c82991fe1138954df50",
+    "semantic_hash": "0bdaf4b65b2c9c82991fe1138954df50"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Domain/Product.java": {
+    "mtime": 1779925702.9582734,
+    "seen": 1789693853.649912,
+    "ast_hash": "a957bd21c8de73a7073c82b1d56dceb4",
+    "semantic_hash": "a957bd21c8de73a7073c82b1d56dceb4"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Domain/ProductRepository.java": {
+    "mtime": 1779925702.9589229,
+    "seen": 1789693853.649913,
+    "ast_hash": "69b4e4e642481660d79e1ab3daf1dd72",
+    "semantic_hash": "69b4e4e642481660d79e1ab3daf1dd72"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/DTO/ProductDTO.java": {
+    "mtime": 1779925702.9598508,
+    "seen": 1789693853.649914,
+    "ast_hash": "512c2050ba9736c45b1382e6028a9225",
+    "semantic_hash": "512c2050ba9736c45b1382e6028a9225"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/DTO/ProductInventoryDTO.java": {
+    "mtime": 1779925702.9603734,
+    "seen": 1789693853.649915,
+    "ast_hash": "083c037fb7f1b6c4ba283f1bc569d597",
+    "semantic_hash": "083c037fb7f1b6c4ba283f1bc569d597"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/Entity/ProductEntity.java": {
+    "mtime": 1779925702.9612613,
+    "seen": 1789693853.649916,
+    "ast_hash": "2c8294f5e9ec56a669aca6f414e34173",
+    "semantic_hash": "2c8294f5e9ec56a669aca6f414e34173"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/Mapper/ProductDTOMapper.java": {
+    "mtime": 1779925702.9619696,
+    "seen": 1789693853.649917,
+    "ast_hash": "f41df6ed1218ed331f7f3c870bd0d608",
+    "semantic_hash": "f41df6ed1218ed331f7f3c870bd0d608"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/Mapper/ProductMapper.java": {
+    "mtime": 1778771457.7901218,
+    "seen": 1789693853.649917,
+    "ast_hash": "b7a77299f3a6ed92e92d80984c7e6479",
+    "semantic_hash": "b7a77299f3a6ed92e92d80984c7e6479"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/ProductController.java": {
+    "mtime": 1780044486.9231756,
+    "seen": 1789693853.6499178,
+    "ast_hash": "35b6e02267968ec33617bc9da19a9e46",
+    "semantic_hash": "35b6e02267968ec33617bc9da19a9e46"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/Repository/ProductMySqlRepository.java": {
+    "mtime": 1779925702.9630852,
+    "seen": 1789693853.649919,
+    "ast_hash": "fd54e6d5ea488349dec0aeb6e9aa1dba",
+    "semantic_hash": "fd54e6d5ea488349dec0aeb6e9aa1dba"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/Repository/SpringProductRepository.java": {
+    "mtime": 1779925702.963492,
+    "seen": 1789693853.64992,
+    "ast_hash": "96a4c55017083736d1b8905c7d3b30a2",
+    "semantic_hash": "96a4c55017083736d1b8905c7d3b30a2"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sale_Details/Domain/SaleDetail.java": {
+    "mtime": 1778771457.7935703,
+    "seen": 1789693853.649921,
+    "ast_hash": "71c4832736ac208374c34370ecffe840",
+    "semantic_hash": "71c4832736ac208374c34370ecffe840"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sale_Details/Domain/SaleDetailRepository.java": {
+    "mtime": 1778771457.794474,
+    "seen": 1789693853.6499221,
+    "ast_hash": "736ea004a20dc1a66305420a43ca0a45",
+    "semantic_hash": "736ea004a20dc1a66305420a43ca0a45"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sale_Details/Infrastructure/Entity/SaleDetailEntity.java": {
+    "mtime": 1778771457.7956603,
+    "seen": 1789693853.649923,
+    "ast_hash": "9f4bf7f1b0f6b1a522dbc45ec587bd1f",
+    "semantic_hash": "9f4bf7f1b0f6b1a522dbc45ec587bd1f"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sale_Details/Infrastructure/Mapper/SaleDetailMapper.java": {
+    "mtime": 1778771457.7968102,
+    "seen": 1789693853.649924,
+    "ast_hash": "c704e1048ccdcec301b7819acb861678",
+    "semantic_hash": "c704e1048ccdcec301b7819acb861678"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sale_Details/Infrastructure/Repository/SaleDetailMySqlRepository.java": {
+    "mtime": 1778771457.798022,
+    "seen": 1789693853.6499252,
+    "ast_hash": "a2c7997e62f5ccac52648414c2604427",
+    "semantic_hash": "a2c7997e62f5ccac52648414c2604427"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sale_Details/Infrastructure/Repository/SpringSaleDetailRepository.java": {
+    "mtime": 1778771457.7990386,
+    "seen": 1789693853.649926,
+    "ast_hash": "b66d3be5221c98237fa36649b6282449",
+    "semantic_hash": "b66d3be5221c98237fa36649b6282449"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Application/SaleService.java": {
+    "mtime": 1779925702.9641354,
+    "seen": 1789693853.649927,
+    "ast_hash": "738ffb0372ab446acd6d50fc6a25b510",
+    "semantic_hash": "738ffb0372ab446acd6d50fc6a25b510"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Application/UseCases/SaleCrudUseCase.java": {
+    "mtime": 1778771457.801227,
+    "seen": 1789693853.649927,
+    "ast_hash": "0693eebc8db2783dbce40942d70ad40b",
+    "semantic_hash": "0693eebc8db2783dbce40942d70ad40b"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Application/UseCases/SaleHistoryUseCase.java": {
+    "mtime": 1779925702.9649503,
+    "seen": 1789693853.6499279,
+    "ast_hash": "b85b8cc54d72092032a42dc0b99bff7c",
+    "semantic_hash": "b85b8cc54d72092032a42dc0b99bff7c"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Application/UseCases/SaleQueryUseCase.java": {
+    "mtime": 1779925702.965792,
+    "seen": 1789693853.649929,
+    "ast_hash": "2c4ec712a3a0d618736a9364e87c7acf",
+    "semantic_hash": "2c4ec712a3a0d618736a9364e87c7acf"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Domain/Sale.java": {
+    "mtime": 1778771457.8026626,
+    "seen": 1789693853.64993,
+    "ast_hash": "d509617eca9540b9efb28ec343dd855a",
+    "semantic_hash": "d509617eca9540b9efb28ec343dd855a"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Domain/SaleRepository.java": {
+    "mtime": 1779925702.9663997,
+    "seen": 1789693853.649931,
+    "ast_hash": "09d3309e0245a2169a278cab30040fa0",
+    "semantic_hash": "09d3309e0245a2169a278cab30040fa0"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/DTO/SaleHistoryDTO.java": {
+    "mtime": 1779925702.966895,
+    "seen": 1789693853.6499321,
+    "ast_hash": "9b5d16c92fb56dab968bd74a5678f4a9",
+    "semantic_hash": "9b5d16c92fb56dab968bd74a5678f4a9"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/DTO/SaleItemRequest.java": {
+    "mtime": 1778771457.804206,
+    "seen": 1789693853.649933,
+    "ast_hash": "c71e591740c79889faeb85b056b5c77e",
+    "semantic_hash": "c71e591740c79889faeb85b056b5c77e"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/DTO/SaleResponse.java": {
+    "mtime": 1778771457.8048558,
+    "seen": 1789693853.649934,
+    "ast_hash": "cacc36415844c5fbb9633c11a678ec9f",
+    "semantic_hash": "cacc36415844c5fbb9633c11a678ec9f"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/Entity/SaleEntity.java": {
+    "mtime": 1778771457.806121,
+    "seen": 1789693853.649935,
+    "ast_hash": "8b9524a44978f7ff754652351b57d84c",
+    "semantic_hash": "8b9524a44978f7ff754652351b57d84c"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/Mapper/SaleMapper.java": {
+    "mtime": 1778771457.8072255,
+    "seen": 1789693853.649936,
+    "ast_hash": "1725ba830654e415cbf5f949aa15eba7",
+    "semantic_hash": "1725ba830654e415cbf5f949aa15eba7"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/Repository/SaleMySqlRepository.java": {
+    "mtime": 1779925702.9675875,
+    "seen": 1789693853.649937,
+    "ast_hash": "13de89cdddfdfcd1c8669b8814fb54b4",
+    "semantic_hash": "13de89cdddfdfcd1c8669b8814fb54b4"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/Repository/SpringSaleRepository.java": {
+    "mtime": 1779925702.968355,
+    "seen": 1789693853.6499379,
+    "ast_hash": "70cc1ce6219f3b58af54be79f2ae59bc",
+    "semantic_hash": "70cc1ce6219f3b58af54be79f2ae59bc"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/SaleController.java": {
+    "mtime": 1779925702.9692674,
+    "seen": 1789693853.649939,
+    "ast_hash": "b1745ad8e2826afe1e3bf66b1e39ea0a",
+    "semantic_hash": "b1745ad8e2826afe1e3bf66b1e39ea0a"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Application/UseCases/UserCountUseCase.java": {
+    "mtime": 1778771457.811622,
+    "seen": 1789693853.64994,
+    "ast_hash": "b5bfe849603bfc716809957e1e3a95e7",
+    "semantic_hash": "b5bfe849603bfc716809957e1e3a95e7"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Application/UseCases/UserCrudUseCase.java": {
+    "mtime": 1780044486.924138,
+    "seen": 1789693853.649941,
+    "ast_hash": "657e227c82fb9e6774a26d8a4d09fe3c",
+    "semantic_hash": "657e227c82fb9e6774a26d8a4d09fe3c"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Application/UserService.java": {
+    "mtime": 1780044486.9259086,
+    "seen": 1789693853.649942,
+    "ast_hash": "bd4ef017125c7c072025430150d3804e",
+    "semantic_hash": "bd4ef017125c7c072025430150d3804e"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Domain/Role.java": {
+    "mtime": 1776648384.0105236,
+    "seen": 1789693853.649943,
+    "ast_hash": "a084af8ce1c4bdb51290474211af9661",
+    "semantic_hash": "a084af8ce1c4bdb51290474211af9661"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Domain/User.java": {
+    "mtime": 1778771457.815133,
+    "seen": 1789693853.649944,
+    "ast_hash": "f6aba94be7287b8c418f1235fe531d30",
+    "semantic_hash": "f6aba94be7287b8c418f1235fe531d30"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Domain/UserRepository.java": {
+    "mtime": 1780044486.9267366,
+    "seen": 1789693853.649945,
+    "ast_hash": "e5a6ed2ea043c70b2648ff3c0bef69ca",
+    "semantic_hash": "e5a6ed2ea043c70b2648ff3c0bef69ca"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Domain/UserStatus.java": {
+    "mtime": 1776648384.0114877,
+    "seen": 1789693853.6499462,
+    "ast_hash": "726196221777f8eacb99f7f4ac834626",
+    "semantic_hash": "726196221777f8eacb99f7f4ac834626"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/DTO/UserDTO.java": {
+    "mtime": 1780044486.9275687,
+    "seen": 1789693853.649947,
+    "ast_hash": "de3b3db402045b48a98e94f2202fb4c0",
+    "semantic_hash": "de3b3db402045b48a98e94f2202fb4c0"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Entity/UserEntity.java": {
+    "mtime": 1779406750.7214456,
+    "seen": 1789693853.649948,
+    "ast_hash": "c65c4828684ddb6488da2aa92ced53da",
+    "semantic_hash": "c65c4828684ddb6488da2aa92ced53da"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Mapper/UserDTOMapper.java": {
+    "mtime": 1780044486.9285781,
+    "seen": 1789693853.6499488,
+    "ast_hash": "4e87e642aae25acc38b021d56c3911f4",
+    "semantic_hash": "4e87e642aae25acc38b021d56c3911f4"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Mapper/UserMapper.java": {
+    "mtime": 1776648384.012232,
+    "seen": 1789693853.64995,
+    "ast_hash": "ce507cbf18138458f307d7d33df9e538",
+    "semantic_hash": "ce507cbf18138458f307d7d33df9e538"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Repository/SpringUserRepository.java": {
+    "mtime": 1780044486.929439,
+    "seen": 1789693853.649951,
+    "ast_hash": "ceffd2684c93e46d2c5523cce9b3d830",
+    "semantic_hash": "ceffd2684c93e46d2c5523cce9b3d830"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Repository/UserMySqlRepository.java": {
+    "mtime": 1780044486.9309752,
+    "seen": 1789693853.649952,
+    "ast_hash": "9e56065dd5e80a356c086a57c68f95ff",
+    "semantic_hash": "9e56065dd5e80a356c086a57c68f95ff"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/UserController.java": {
+    "mtime": 1780044486.9330454,
+    "seen": 1789693853.6499531,
+    "ast_hash": "ddf30e3b327914ac2ea5cdf97f0c394f",
+    "semantic_hash": "ddf30e3b327914ac2ea5cdf97f0c394f"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/ZenkaiApplication.java": {
+    "mtime": 1779925702.971699,
+    "seen": 1789693853.6499531,
+    "ast_hash": "b11993ecaf2e7405817f58b48d1c23a3",
+    "semantic_hash": "b11993ecaf2e7405817f58b48d1c23a3"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Auth/Application/AuthServiceTest.java": {
+    "mtime": 1779925702.9736671,
+    "seen": 1789693853.649955,
+    "ast_hash": "64e66e5b177966474c79d9371c752f4f",
+    "semantic_hash": "64e66e5b177966474c79d9371c752f4f"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Categories/Application/CategoryServiceTest.java": {
+    "mtime": 1779925702.974261,
+    "seen": 1789693853.649956,
+    "ast_hash": "6c4764b9971668dff4d5f11e8aa2e998",
+    "semantic_hash": "6c4764b9971668dff4d5f11e8aa2e998"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/CategoryControllerTest.java": {
+    "mtime": 1779925702.9752402,
+    "seen": 1789693853.6499572,
+    "ast_hash": "27a8449e778f844ac4580fa590162219",
+    "semantic_hash": "27a8449e778f844ac4580fa590162219"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Categories/Infrastructure/Repository/CategoryMySqlRepositoryTest.java": {
+    "mtime": 1779925702.9758592,
+    "seen": 1789693853.649958,
+    "ast_hash": "7c25dd0b8332cc43286cdaeb46da1f45",
+    "semantic_hash": "7c25dd0b8332cc43286cdaeb46da1f45"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Cloudinary/Application/CloudinaryServiceTest.java": {
+    "mtime": 1779925702.9765575,
+    "seen": 1789693853.6499588,
+    "ast_hash": "79eeb04626d4a09dd7d3a93c12da8e92",
+    "semantic_hash": "79eeb04626d4a09dd7d3a93c12da8e92"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Config/Application/JwtServiceTest.java": {
+    "mtime": 1779925702.977576,
+    "seen": 1789693853.6499588,
+    "ast_hash": "29fdf526202ba07171dadcd51b5cb655",
+    "semantic_hash": "29fdf526202ba07171dadcd51b5cb655"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Exceptions/Infrastructure/GlobalExceptionHandlerTest.java": {
+    "mtime": 1779925702.9782794,
+    "seen": 1789693853.64996,
+    "ast_hash": "13330d959b9ebb7fc2c96bac78181b74",
+    "semantic_hash": "13330d959b9ebb7fc2c96bac78181b74"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Lots/Application/LotServiceTest.java": {
+    "mtime": 1779925702.9791026,
+    "seen": 1789693853.649961,
+    "ast_hash": "9b5d5c5735206ef1ba060367b63662dd",
+    "semantic_hash": "9b5d5c5735206ef1ba060367b63662dd"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/LotControllerTest.java": {
+    "mtime": 1779925702.9798238,
+    "seen": 1789693853.649962,
+    "ast_hash": "1b49df22beebbea2cf8985ba7fce81bc",
+    "semantic_hash": "1b49df22beebbea2cf8985ba7fce81bc"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Repository/LotMySqlRepositoryTest.java": {
+    "mtime": 1779925702.9807107,
+    "seen": 1789693853.649963,
+    "ast_hash": "b9ab5c863a2a427e26be594dba3f98f0",
+    "semantic_hash": "b9ab5c863a2a427e26be594dba3f98f0"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Scheduler/LotStatusSchedulerTest.java": {
+    "mtime": 1779925702.9813278,
+    "seen": 1789693853.649964,
+    "ast_hash": "0ce5ed613ea8fb85cd38a354f6168831",
+    "semantic_hash": "0ce5ed613ea8fb85cd38a354f6168831"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Products/Application/ProductServiceTest.java": {
+    "mtime": 1780044486.9342172,
+    "seen": 1789693853.649965,
+    "ast_hash": "2c512e1a5df182ac5e63dd4cd8472741",
+    "semantic_hash": "2c512e1a5df182ac5e63dd4cd8472741"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/ProductControllerTest.java": {
+    "mtime": 1780044486.9354048,
+    "seen": 1789693853.649966,
+    "ast_hash": "4f5b69f179d3df224d6d968850f2a92d",
+    "semantic_hash": "4f5b69f179d3df224d6d968850f2a92d"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Products/Infrastructure/Repository/ProductMySqlRepositoryTest.java": {
+    "mtime": 1779925702.9839547,
+    "seen": 1789693853.6499672,
+    "ast_hash": "d79b09bf2968b46a0f8a074ef7278f87",
+    "semantic_hash": "d79b09bf2968b46a0f8a074ef7278f87"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Sale_Details/Infrastructure/Repository/SaleDetailMySqlRepositoryTest.java": {
+    "mtime": 1779925702.9851563,
+    "seen": 1789693853.6499681,
+    "ast_hash": "221d4e76c4009fde1f7ee576ab03b211",
+    "semantic_hash": "221d4e76c4009fde1f7ee576ab03b211"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Sales/Application/SaleServiceTest.java": {
+    "mtime": 1779925702.9868233,
+    "seen": 1789693853.6499681,
+    "ast_hash": "7d48f7bbdc5f391b93b088a08933431f",
+    "semantic_hash": "7d48f7bbdc5f391b93b088a08933431f"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/Repository/SaleMySqlRepositoryTest.java": {
+    "mtime": 1779925702.9876049,
+    "seen": 1789693853.6499689,
+    "ast_hash": "2487b2fd7ee87f102c5f63bb8553c3cc",
+    "semantic_hash": "2487b2fd7ee87f102c5f63bb8553c3cc"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Sales/Infrastructure/SaleControllerTest.java": {
+    "mtime": 1779925702.9883518,
+    "seen": 1789693853.6499698,
+    "ast_hash": "054c621bbee1c0f1a9c3a59f0da76379",
+    "semantic_hash": "054c621bbee1c0f1a9c3a59f0da76379"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/TestContainersConfig.java": {
+    "mtime": 1779925702.9889085,
+    "seen": 1789693853.649971,
+    "ast_hash": "05d9054a5ee60e2fedb1fce59fd25c83",
+    "semantic_hash": "05d9054a5ee60e2fedb1fce59fd25c83"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Users/Application/UserServiceTest.java": {
+    "mtime": 1780044486.9364743,
+    "seen": 1789693853.649972,
+    "ast_hash": "519f816ea28caeed4b3f2ee659d5c299",
+    "semantic_hash": "519f816ea28caeed4b3f2ee659d5c299"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Repository/UserMySqlRepositoryTest.java": {
+    "mtime": 1779925702.9909828,
+    "seen": 1789693853.649973,
+    "ast_hash": "6a124055a26b09f2b27262f570147d48",
+    "semantic_hash": "6a124055a26b09f2b27262f570147d48"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/UserControllerTest.java": {
+    "mtime": 1780044486.938498,
+    "seen": 1789693853.649974,
+    "ast_hash": "e0c58035daea83230976b5b822cd646f",
+    "semantic_hash": "e0c58035daea83230976b5b822cd646f"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/ZenkaiApplicationTests.java": {
+    "mtime": 1779925702.9923341,
+    "seen": 1789693853.649975,
+    "ast_hash": "883875363df4010e293b7a94566c0fc4",
+    "semantic_hash": "883875363df4010e293b7a94566c0fc4"
+  },
+  "docker-compose.sonar.yml": {
+    "mtime": 1779925702.93595,
+    "seen": 1789693853.649976,
+    "ast_hash": "5452de818ed72a61959b9ccc2ea587f4",
+    "semantic_hash": "5452de818ed72a61959b9ccc2ea587f4"
+  },
+  "docker-compose.yml": {
+    "mtime": 1779925702.9363942,
+    "seen": 1789693853.6499772,
+    "ast_hash": "694bb1fa007e43fe4b8c0fc545c9d150",
+    "semantic_hash": "694bb1fa007e43fe4b8c0fc545c9d150"
+  }
+}
