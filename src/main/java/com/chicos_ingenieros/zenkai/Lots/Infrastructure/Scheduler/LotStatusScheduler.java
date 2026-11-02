@@ -13,7 +13,7 @@ public class LotStatusScheduler {
 
     private final LotStatusUpdateUseCase lotStatusUpdateUseCase;
 
-    @Scheduled(cron = "0 0 0 * * *")
+    @Scheduled(cron = "0 0 0 * * *", zone = "America/Bogota")
     public void updateLotStatuses() {
         log.info("Iniciando actualización diaria de estados de lotes");
         lotStatusUpdateUseCase.updateLotStatuses();
