@@ -38,6 +38,10 @@ build/
 ##Variables de Entorno
 .env
 
+#Backups
+backups/
+Backups/
+
 #Logs
 Logs/backend/*.log
 Logs/backend/history/*.log
