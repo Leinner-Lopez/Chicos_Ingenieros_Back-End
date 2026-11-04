@@ -12,10 +12,10 @@
     "semantic_hash": "e156686025c6bfc5b8f8bbd4a131016a"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Auth/Application/AuthService.java": {
-    "mtime": 1778771457.757605,
-    "seen": 1789693853.649861,
-    "ast_hash": "c58656e71fae5604dd4359af3b9dbb11",
-    "semantic_hash": "c58656e71fae5604dd4359af3b9dbb11"
+    "mtime": 1790639734.161143,
+    "seen": 1793747326.945411,
+    "ast_hash": "b12e0830d9a9b176256677965d509fc2",
+    "semantic_hash": "b12e0830d9a9b176256677965d509fc2"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Auth/Application/LoginUserCase.java": {
     "mtime": 1778771457.7584229,
@@ -150,10 +150,10 @@
     "semantic_hash": "f0f9156b141c7921dbf5fd9420917ccd"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Config/Infrastructure/SecurityConfig.java": {
-    "mtime": 1778217447.5247986,
-    "seen": 1789693853.649884,
-    "ast_hash": "e29a896ef2d5d87316d1444b3b2ddb7f",
-    "semantic_hash": "e29a896ef2d5d87316d1444b3b2ddb7f"
+    "mtime": 1793595165.5220172,
+    "seen": 1793747326.945466,
+    "ast_hash": "7428f945a45cca40232d1ac209a77240",
+    "semantic_hash": "7428f945a45cca40232d1ac209a77240"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Dashboard/DashboardAdminController.java": {
     "mtime": 1779925702.943419,
@@ -180,10 +180,10 @@
     "semantic_hash": "f99c86452a39a0b52f1874dbfcb71751"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Domain/IlegalActionException.java": {
-    "mtime": 1778771457.769866,
-    "seen": 1789693853.649889,
-    "ast_hash": "13bb51d1e54d297e85fa231982054ffa",
-    "semantic_hash": "13bb51d1e54d297e85fa231982054ffa"
+    "mtime": 1790640041.6626742,
+    "seen": 1793747326.945473,
+    "ast_hash": "9612b2dca17da27715fcfc2596102cd4",
+    "semantic_hash": "9612b2dca17da27715fcfc2596102cd4"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Domain/ResourceDuplicateException.java": {
     "mtime": 1776648384.0035224,
@@ -198,10 +198,10 @@
     "semantic_hash": "99013cda2ccc1985fd43a5ceb2b520e3"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Exceptions/Infrastructure/GlobalExceptionHandler.java": {
-    "mtime": 1779925702.9462147,
-    "seen": 1789693853.6498911,
-    "ast_hash": "13120a259a437765266488652a7fc871",
-    "semantic_hash": "13120a259a437765266488652a7fc871"
+    "mtime": 1790640041.6722727,
+    "seen": 1793747326.945477,
+    "ast_hash": "5def8196622679a98251399cd16bb2d4",
+    "semantic_hash": "5def8196622679a98251399cd16bb2d4"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Lots/Application/LotService.java": {
     "mtime": 1779925702.9466498,
@@ -294,10 +294,10 @@
     "semantic_hash": "481a70b16f66812f6ee58f142d49efbd"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Lots/Infrastructure/Scheduler/LotStatusScheduler.java": {
-    "mtime": 1779925702.9555435,
-    "seen": 1789693853.649906,
-    "ast_hash": "e720797b9d11e8c6096cd57ef31f7369",
-    "semantic_hash": "e720797b9d11e8c6096cd57ef31f7369"
+    "mtime": 1793052425.8242426,
+    "seen": 1793747326.945499,
+    "ast_hash": "3f863024afbcf51c9b9d0893c27d8555",
+    "semantic_hash": "3f863024afbcf51c9b9d0893c27d8555"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Products/Application/ProductService.java": {
     "mtime": 1780044486.9207177,
@@ -558,10 +558,10 @@
     "semantic_hash": "de3b3db402045b48a98e94f2202fb4c0"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Entity/UserEntity.java": {
-    "mtime": 1779406750.7214456,
-    "seen": 1789693853.649948,
-    "ast_hash": "c65c4828684ddb6488da2aa92ced53da",
-    "semantic_hash": "c65c4828684ddb6488da2aa92ced53da"
+    "mtime": 1790639602.078733,
+    "seen": 1793747326.9455612,
+    "ast_hash": "ffa066dc9e25de0220c7b959f3478933",
+    "semantic_hash": "ffa066dc9e25de0220c7b959f3478933"
   },
   "src/main/java/com/chicos_ingenieros/zenkai/Users/Infrastructure/Mapper/UserDTOMapper.java": {
     "mtime": 1780044486.9285781,
@@ -600,14 +600,14 @@
     "semantic_hash": "b11993ecaf2e7405817f58b48d1c23a3"
   },
   "src/test/java/com/chicos_ingenieros/zenkai/Auth/Application/AuthServiceTest.java": {
-    "mtime": 1779925702.9736671,
-    "seen": 1789693853.649955,
-    "ast_hash": "64e66e5b177966474c79d9371c752f4f",
-    "semantic_hash": "64e66e5b177966474c79d9371c752f4f"
+    "mtime": 1790568919.2381046,
+    "seen": 1793747326.9455712,
+    "ast_hash": "f3e04411054b09f31bcb948bb53e76f6",
+    "semantic_hash": "f3e04411054b09f31bcb948bb53e76f6"
   },
   "src/test/java/com/chicos_ingenieros/zenkai/Categories/Application/CategoryServiceTest.java": {
-    "mtime": 1779925702.974261,
-    "seen": 1789693853.649956,
+    "mtime": 1790568790.1510713,
+    "seen": 1793747326.945575,
     "ast_hash": "6c4764b9971668dff4d5f11e8aa2e998",
     "semantic_hash": "6c4764b9971668dff4d5f11e8aa2e998"
   },
@@ -744,9 +744,129 @@
     "semantic_hash": "5452de818ed72a61959b9ccc2ea587f4"
   },
   "docker-compose.yml": {
-    "mtime": 1779925702.9363942,
-    "seen": 1789693853.6499772,
-    "ast_hash": "694bb1fa007e43fe4b8c0fc545c9d150",
-    "semantic_hash": "694bb1fa007e43fe4b8c0fc545c9d150"
+    "mtime": 1793595165.5269437,
+    "seen": 1793747326.945606,
+    "ast_hash": "981663c3fdedf8fba84fee5e3b53037d",
+    "semantic_hash": "981663c3fdedf8fba84fee5e3b53037d"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Application/BackupService.java": {
+    "mtime": 1793595115.2229164,
+    "seen": 1793747326.9454222,
+    "ast_hash": "f59f19321ead0d46be729947051fbb13",
+    "semantic_hash": "f59f19321ead0d46be729947051fbb13"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Application/UseCases/BackupCreateUseCase.java": {
+    "mtime": 1793595115.206159,
+    "seen": 1793747326.9454231,
+    "ast_hash": "f08abf71ea05cd11023266b6bb826038",
+    "semantic_hash": "f08abf71ea05cd11023266b6bb826038"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Application/UseCases/BackupHistoryUseCase.java": {
+    "mtime": 1793595115.210006,
+    "seen": 1793747326.9454248,
+    "ast_hash": "01814cb629d5cb9f5abed45fe2e94b33",
+    "semantic_hash": "01814cb629d5cb9f5abed45fe2e94b33"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Application/UseCases/BackupPurgeUseCase.java": {
+    "mtime": 1793595115.2189333,
+    "seen": 1793747326.945426,
+    "ast_hash": "18d909b20316b4bd5c671fcd3d2ae411",
+    "semantic_hash": "18d909b20316b4bd5c671fcd3d2ae411"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Application/UseCases/BackupRestoreUseCase.java": {
+    "mtime": 1793595115.2147088,
+    "seen": 1793747326.945427,
+    "ast_hash": "db488d777769d857eddc96340b0c8fae",
+    "semantic_hash": "db488d777769d857eddc96340b0c8fae"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Domain/Backup.java": {
+    "mtime": 1793595115.189926,
+    "seen": 1793747326.945428,
+    "ast_hash": "50fd2f6a1e9186c65864ac836bca6563",
+    "semantic_hash": "50fd2f6a1e9186c65864ac836bca6563"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Domain/BackupDataPort.java": {
+    "mtime": 1793595115.2020187,
+    "seen": 1793747326.945429,
+    "ast_hash": "54ab274fdf0f8125927b638b7819836c",
+    "semantic_hash": "54ab274fdf0f8125927b638b7819836c"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Domain/BackupRepository.java": {
+    "mtime": 1793595115.1938584,
+    "seen": 1793747326.94543,
+    "ast_hash": "0f0879472ad11df57bd5e575fd945a77",
+    "semantic_hash": "0f0879472ad11df57bd5e575fd945a77"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Domain/BackupStoragePort.java": {
+    "mtime": 1793595115.1977215,
+    "seen": 1793747326.945431,
+    "ast_hash": "578713142ab42e1806bfc56cb120baab",
+    "semantic_hash": "578713142ab42e1806bfc56cb120baab"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Domain/BackupType.java": {
+    "mtime": 1793595115.185491,
+    "seen": 1793747326.945432,
+    "ast_hash": "1c1d5745400a66b257e1123412f2f942",
+    "semantic_hash": "1c1d5745400a66b257e1123412f2f942"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/BackupController.java": {
+    "mtime": 1793595165.432546,
+    "seen": 1793747326.9454331,
+    "ast_hash": "b8c74aa245a78ba7afcc2121c86ac233",
+    "semantic_hash": "b8c74aa245a78ba7afcc2121c86ac233"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/DTO/BackupOperationResponse.java": {
+    "mtime": 1793595165.4286745,
+    "seen": 1793747326.945434,
+    "ast_hash": "5715262aa95cd606f809ff2b08702d22",
+    "semantic_hash": "5715262aa95cd606f809ff2b08702d22"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/Data/JdbcBackupDataAdapter.java": {
+    "mtime": 1793595150.1135337,
+    "seen": 1793747326.9454348,
+    "ast_hash": "9d88828386f9e81a15563780417c76bc",
+    "semantic_hash": "9d88828386f9e81a15563780417c76bc"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/Entity/BackupEntity.java": {
+    "mtime": 1793595150.0826905,
+    "seen": 1793747326.945436,
+    "ast_hash": "bb1cfc2f576ec696ced46d818b8d7452",
+    "semantic_hash": "bb1cfc2f576ec696ced46d818b8d7452"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/Mapper/BackupMapper.java": {
+    "mtime": 1793595150.087925,
+    "seen": 1793747326.945437,
+    "ast_hash": "63873d7ffabd22175d5df6ddd7da654b",
+    "semantic_hash": "63873d7ffabd22175d5df6ddd7da654b"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/Repository/BackupMySqlRepository.java": {
+    "mtime": 1793595150.0985637,
+    "seen": 1793747326.945438,
+    "ast_hash": "534ed1dc03a5d2733eed2a9387d63d57",
+    "semantic_hash": "534ed1dc03a5d2733eed2a9387d63d57"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/Repository/SpringBackupRepository.java": {
+    "mtime": 1793595150.0938666,
+    "seen": 1793747326.9454389,
+    "ast_hash": "309613bac46ceed663ad232a1601adbc",
+    "semantic_hash": "309613bac46ceed663ad232a1601adbc"
+  },
+  "src/main/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/Storage/LocalFileBackupStorage.java": {
+    "mtime": 1793595150.1060433,
+    "seen": 1793747326.94544,
+    "ast_hash": "905ad3ebc654ead55396c3254232905f",
+    "semantic_hash": "905ad3ebc654ead55396c3254232905f"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/BackUp/Application/BackupServiceTest.java": {
+    "mtime": 1793595198.845062,
+    "seen": 1793747326.9455721,
+    "ast_hash": "a11063ecdc1957c2ec8f78e9c1eb9619",
+    "semantic_hash": "a11063ecdc1957c2ec8f78e9c1eb9619"
+  },
+  "src/test/java/com/chicos_ingenieros/zenkai/BackUp/Infrastructure/BackupControllerTest.java": {
+    "mtime": 1793595198.8497412,
+    "seen": 1793747326.945573,
+    "ast_hash": "4edc3a8d8847fdb59275d4d3b860da39",
+    "semantic_hash": "4edc3a8d8847fdb59275d4d3b860da39"
   }
 }
